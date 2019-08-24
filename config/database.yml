@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: speedrail_dev
+  database: strangers_in_kind_dev
 
 test:
   <<: *default
-  database: speedrail_test
+  database: strangers_in_kind_test
 
 production:
   <<: *default
-  database: speedrail_prod
+  database: strangers_in_kind_prod

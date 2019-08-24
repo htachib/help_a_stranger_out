@@ -33,7 +33,6 @@ gem 'rename' # rails g rename:into new_app_name
 gem 'rack-cors', :require => 'rack/cors'
 gem 'httparty' # external HTTP requests
 gem 'stripe' # payments
-gem 'orange-rails'
 
 group :development do
   gem 'web-console', '~> 3.5.0'

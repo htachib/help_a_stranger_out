@@ -11,6 +11,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# blockstack
+gem 'omniauth'
+gem 'omniauth-blockstack'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'execjs'
+
 # rails 5.2 upgrades
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'listen', '>= 3.0.5', '< 3.2'

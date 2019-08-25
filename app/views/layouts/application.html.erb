@@ -5,11 +5,10 @@
   <%= metamagic site: "Help A Stranger Out", title: [:site, :title], separator: " | " %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
   <link rel="stylesheet" href="https://cdn.orangecss.com/1.1.1/css/orange.min.css">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <script src="https://unpkg.com/blockstack@19.3.0-beta.1/dist/blockstack.js" integrity="sha384-kscoAgc5pZqovHWSKndfyn3OeKHfRSh+Xc5wYc+E02BuyQV2zwEEHJ7p5drKnRrX" crossorigin="anonymous"></script>
+  <%= render "shared/authenticate_user" %>
   <%= csrf_meta_tags %>
 </head>
 <body>

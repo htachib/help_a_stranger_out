@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get '/auth/blockstack/callback' => 'pages#blockstack_callback'
 
   resources :dashboard, only: [:index]
   resources :deeds, only: [:index, :create, :show, :edit, :new]
+  resources :stories, only: [:create, :show, :edit, :new]
   resources :users, only: [:show, :create, :edit, :update]
 
   # payments

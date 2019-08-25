@@ -1,0 +1,23 @@
+<h2>Create a Story</h2>
+
+<div class="callout--shadow pl-48 pr-48 pb-48 pt-48">
+  <h3 class='mb-48'>Carry Groceries for a Stranger</h3>
+  <div class="col-md-12 row">
+    <div class="col-md-5">
+      <div class="empty-state__image shadow-input">
+        <%= image_tag 'deeds/clip-working-together.png', class: 'empty-state__images' %>
+      </div>
+    </div>
+    <div class="col-md-7 pl-48">
+      <form class="form form--large">
+        <%= render partial: 'shared/form/input_textarea', locals: {id: 'story_details', label: 'Tell your story', description: 'How did you make a stranger smile?', input_class: 'height-300' } %>
+        <div class="mt-48">
+          <button type="button" class="button button--color-blue" disabled="disabled">Upload Media</button> <span class='italic color-gray-light'>(Coming Soon)</span>
+        </div>
+        <div class="mt-48">
+          <button type="button" class="button button--wide">Publish Story</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

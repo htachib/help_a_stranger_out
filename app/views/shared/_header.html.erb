@@ -7,20 +7,17 @@
     <% end %>
   </div>
   <ul class="float-right">
-    <% if current_user %>
-      <li>
-        <%= link_to 'dashboard', dashboard_index_path, class: active_tab(root_path)  %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to 'home', root_path, class: active_tab(root_path)  %>
-      </li>
-    <% end %>
     <li>
-      <%= link_to 'login', new_user_session_path, class: active_tab(new_user_session_path) unless current_user %>
+      <%= link_to 'home', root_path, class: active_tab(root_path)  %>
     </li>
     <li>
-      <%= link_to 'logout', logout_path if current_user %>
+      <%= link_to 'dashboard', dashboard_index_path  %>
+    </li>
+    <li>
+      <%= link_to "Log In", '#', class: 'signin-button' %>
+    </li>
+    <li>
+      <%= link_to "Log Out", '#', id: 'signout-button' %>
     </li>
   </ul>
 </nav>

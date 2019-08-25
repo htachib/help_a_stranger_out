@@ -49,4 +49,4 @@
 <%= render partial: 'shared/card', locals: {title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', times_completed: 3, in_progress: nil } %>
 
 <%= link_to 'See More', dashboard_index_path, class: 'button button--large button--color-blue' %>
-<button type="button" class="button button--large">Create a Custom Deed</button>
+<%= link_to 'Create a Custom Deed', new_deed_path, class: 'button button--large' %>

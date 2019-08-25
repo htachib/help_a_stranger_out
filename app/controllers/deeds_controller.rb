@@ -4,7 +4,6 @@ class DeedsController < ApplicationController
   end
 
   def create
-
   end
 
   def show

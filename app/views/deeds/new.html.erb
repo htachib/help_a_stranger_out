@@ -1,0 +1,15 @@
+<h2>Create a Custom Deed</h2>
+
+<form class="form form--large">
+  <%= render partial: 'shared/form/input_short', locals: {id: 'title', label: 'Title'} %>
+  <div class="mb-48"></div>
+  <%= render partial: 'shared/form/input_textarea', locals: {id: 'description', label: 'Description', description: 'Describe the good deed that helps out a stranger'} %>
+  <div class="mb-48"></div>
+  <%= render 'shared/form/radio_thumbnail' %>
+  <div class="mt-48"></div>
+  <%= render partial: 'shared/form/toggle', locals: {id: 'shareable', label: 'Add to Community Deed Library?'} %>
+  <%= render partial: 'shared/form/toggle', locals: {id: 'funding', label: 'Needs Funding?'} %>
+  <%= render partial: 'shared/form/input_short_toggled', locals: {id: 'funding_amount', label: 'Funding Amount in Dollars', toggle_id: 'funding' } %>
+  <div class="mt-48"></div>
+  <button type="button" class="button">Publish Deed</button>
+</form>

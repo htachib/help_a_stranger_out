@@ -3,6 +3,7 @@
 .list a, .list a:hover { color: #000; }
 .callout { font-style: normal !important; }
 .display-inline { display: inline }
+.display-inline-block { display: inline-block; }
 .display-block { display: block }
 .form__description { color: $gray !important; }
 .text-underline { text-decoration: underline; }
@@ -11,12 +12,15 @@
 .position-relative { position: relative; }
 .cursor-pointer { cursor: pointer; }
 .overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
 .float-left { float: left; }
 .float-right { float: right; }
 .icon--large { font-size: $spacing-large !important; }
 .icon--extra-large { font-size: $spacing-extra-large !important; }
 .italic { font-style: italic; }
 .vertical-middle { vertical-align: middle; }
+.hide { display: none; }
+.radio-group--max-height { height: 100% !important; }
 
 
 .callout:hover {

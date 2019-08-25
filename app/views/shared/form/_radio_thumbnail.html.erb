@@ -1,0 +1,100 @@
+<div class="form__item">
+  <div class="radio-group radio-group--max-height overflow-auto">
+    <div class="radio-group__label">Choose a Thumbnail Picture</div>
+
+    <div class="">
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_1_pic'>
+        <div class="empty-state__image">
+          <%= image_tag 'deeds/clip-praise.png', alt: 'Give praise' %>
+        </div>
+      </div>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_2_pic'>
+        <div class="empty-state__image">
+          <%= image_tag 'deeds/clip-burden.png', alt: 'Lift a burden' %>
+        </div>
+      </div>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_3_pic'>
+        <div class="empty-state__image">
+          <%= image_tag 'deeds/clip-giving-praise.png', alt: 'Spread positivity' %>
+        </div>
+      </div>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_4_pic'>
+        <div class="empty-state__image">
+          <%= image_tag 'deeds/clip-carrying-blocks.png', alt: 'Donate Time' %>
+        </div>
+      </div>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_5_pic'>
+        <div class="empty-state__image">
+          <%= image_tag 'deeds/clip-donate-money.png', alt: 'Donate Money' %>
+        </div>
+      </div>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_6_pic'>
+        <div class="empty-state__image">
+          <%= image_tag 'deeds/clip-working-together.png', alt: 'Give a Hand' %>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="radio">
+      <input type="radio" name="Radio" id="radio_1" value="radio_1">
+      <label for="radio_1">
+        Recognize
+      </label>
+    </div>
+
+    <div class="radio">
+      <input type="radio" name="Radio" id="radio_2" value="radio_2">
+      <label for="radio_2">
+        Lift a burden
+      </label>
+    </div>
+
+    <div class="radio">
+      <input type="radio" name="Radio" id="radio_3" value="radio_3">
+      <label for="radio_3">
+        Spread positivity
+      </label>
+    </div>
+
+    <div class="radio">
+      <input type="radio" name="Radio" id="radio_4" value="radio_4">
+      <label for="radio_4">
+        Donate time
+      </label>
+    </div>
+
+    <div class="radio">
+      <input type="radio" name="Radio" id="radio_5" value="radio_5">
+      <label for="radio_5">
+        Donate money
+      </label>
+    </div>
+
+    <div class="radio">
+      <input type="radio" name="Radio" id="radio_6" value="radio_6" checked="checked">
+      <label for="radio_6">
+        Give a hand
+      </label>
+    </div>
+</div>
+
+<script type="text/javascript">
+  showThumbnail();
+
+  $("input[type='radio']").on('change', function() {
+    showThumbnail();
+  })
+
+  function showThumbnail() {
+    $("input[type='radio']").each(function(e) {
+      var radio_id = 'radio_' + (e + 1);
+      var pic_id = '#radio_' + (e + 1) + '_pic';
+      if (document.getElementById(radio_id).checked) {
+        $(pic_id).removeClass('hide');
+      } else {
+        $(pic_id).addClass('hide');
+      }
+    });
+  }
+</script>

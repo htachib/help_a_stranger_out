@@ -7,7 +7,9 @@
   <%= render partial: 'stat', locals: { value: @stat_4, title: 'Deeds for Funding', color: 'green' } %>
 </div>
 
-<%= render partial: 'shared/dashboard/card', locals: {title: 'Carrying Groceries', description: 'Help a stranger carry groceries from the store to their car.', times_completed: 35 } %>
-<%= render partial: 'shared/dashboard/card', locals: {title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', times_completed: 3 } %>
-<%= render partial: 'shared/dashboard/card', locals: {title: 'Give Toll $', description: "Pay for someone's groceries behind you.", times_completed: 12 } %>
-<%= render partial: 'shared/dashboard/card', locals: {title: 'Friendly Greeting', description: "Tell someone to have a good day and really mean it.", times_completed: 23 } %>
+<div class="mt-48"></div>
+<h2>Try These Deeds Today</h2>
+<%= render partial: 'shared/card', locals: {title: 'Carrying Groceries', description: 'Help a stranger carry groceries from the store to their car.', times_completed: 35, in_progress: nil } %>
+<%= render partial: 'shared/card', locals: {title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', times_completed: 3, in_progress: nil } %>
+<%= render partial: 'shared/card', locals: {title: 'Give Toll $', description: "Pay for someone's groceries behind you.", times_completed: 12, in_progress: nil } %>
+<%= render partial: 'shared/card', locals: {title: 'Friendly Greeting', description: "Tell someone to have a good day and really mean it.", times_completed: 23, , in_progress: nil } %>

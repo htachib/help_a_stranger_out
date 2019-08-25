@@ -1,6 +1,3 @@
-<div class="mt-48">
-</div>
-
 <div class="card">
   <div class="card__body position-relative">
     <h3><%=title %></h3>
@@ -15,7 +12,12 @@
           <%= description %>
         </div>
         <div class="card__footer pl-0 mt-12 italic">
-          Completed <%= times_completed %> times
+          <p>
+            <span class='color-orange'>45</span>
+            <span class="icon-profile color-orange vertical-middle"></span>
+            <span class="color-gray-light">|</span>
+            <%= times_completed %> Completed
+          </p>
         </div>
         <div class="mt-48 position-bottom-right row">
           <div class="">
@@ -30,11 +32,19 @@
             <span class="ml-6 icons-item icon-budget cursor-pointer color-green"></span>
             <span class="icons-text">give $ to smile fund</span>
           </div>
+          <% if in_progress %>
+            <div class="">
+              <span class="ml-6 icons-item icon-remove cursor-pointer color-red"></span>
+              <span class="icons-text">remove from My Deeds In Progress</span>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="mt-48"></div>
 
 <script type="text/javascript">
   $(".icons-item").hover(function() {

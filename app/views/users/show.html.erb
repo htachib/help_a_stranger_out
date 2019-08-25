@@ -40,4 +40,13 @@
   </div>
 </div>
 
-<h2>Suggested Kind Acts</h2>
+<div class="mt-48"></div>
+<h2>My Deeds In Progress</h2>
+<%= render partial: 'shared/card', locals: {title: 'Give Toll $', description: "Pay for someone's groceries behind you.", times_completed: 12, in_progress: true } %>
+
+<h2>Browse More Deeds</h2>
+<%= render partial: 'shared/card', locals: {title: 'Carrying Groceries', description: 'Help a stranger carry groceries from the store to their car.', times_completed: 35, in_progress: nil } %>
+<%= render partial: 'shared/card', locals: {title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', times_completed: 3, in_progress: nil } %>
+
+<%= link_to 'See More', dashboard_index_path, class: 'button button--large button--color-blue' %>
+<button type="button" class="button button--large">Create a Custom Deed</button>

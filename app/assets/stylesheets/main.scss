@@ -16,8 +16,16 @@
 .icon--large { font-size: $spacing-large !important; }
 .icon--extra-large { font-size: $spacing-extra-large !important; }
 .italic { font-style: italic; }
+.vertical-middle { vertical-align: middle; }
 
 
+.callout:hover {
+  cursor: default !important;
+}
+
+.callout--color-green:hover {
+  background-color: default !important
+}
 
 hr {
   margin-bottom: 24px;

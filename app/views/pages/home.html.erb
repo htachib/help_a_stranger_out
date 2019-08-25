@@ -8,7 +8,7 @@
     </div>
     <div class="mt-12">
       <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
-      <%= link_to 'dashboard', dashboard_index_path, class: 'button button--large button--color-blue' %>
+      <%= link_to 'dashboard', dashboard_index_path, class: 'button button--large button--color-blue', data: { turbolinks: false} %>
     </div>
   </div>
 </div>
@@ -106,32 +106,5 @@
 </div>
 
 <script type="text/javascript">
-  var blockstackSession = new blockstack.UserSession;
-  var profile;
 
-  let signoutButton = document.getElementById('signout-button');
-  let signinButtons = document.getElementsByClassName('signin-button');
-
-  signoutButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    blockstackSession.signUserOut(window.location.origin)
-  })
-
-  for (let el of signinButtons) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      blockstackSession.redirectToSignIn();
-    })
-  }
-
-  // TODO - use promise after redirectToSignIn() vs setInterval
-  var loginTicker = setInterval(function(){
-    if (blockstackSession.isSignInPending()) {
-      clearInterval(loginTicker);
-
-      blockstackSession.handlePendingSignIn().then(userData => {
-        profile = userData.profile
-      })
-    }
-  }, 200);
 </script>

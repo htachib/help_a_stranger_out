@@ -11,13 +11,13 @@
       <%= link_to 'home', root_path, class: active_tab(root_path)  %>
     </li>
     <li>
-      <%= link_to 'dashboard', dashboard_index_path  %>
+      <%= link_to 'dashboard', dashboard_index_path, data: { turbolinks: false }  %>
     </li>
     <li>
-      <%= link_to "Log In", '#', class: 'signin-button' %>
+      <%= link_to "log in", '#', class: 'signin-button' %>
     </li>
     <li>
-      <%= link_to "Log Out", '#', id: 'signout-button' %>
+      <%= link_to "log out", '#', id: 'signout-button' %>
     </li>
   </ul>
 </nav>

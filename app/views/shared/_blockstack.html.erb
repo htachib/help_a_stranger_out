@@ -1,0 +1,34 @@
+<script>
+// var blockstackSession = new blockstack.UserSession;
+var profile;
+
+var signoutButton = document.getElementById('signout-button');
+var signinButtons = document.getElementsByClassName('signin-button');
+
+signoutButton.addEventListener('click', function(e) {
+  e.preventDefault();
+  blockstackSession.signUserOut(window.location.origin)
+})
+
+for (let el of signinButtons) {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    blockstackSession.redirectToSignIn();
+  })
+}
+
+if (window.location.search.indexOf('authResponse') > -1) {
+  if (blockstackSession.isSignInPending()) {
+    blockstackSession.handlePendingSignIn().then(userData => {
+      profile = userData.profile;
+      window.location.href = '<%= dashboard_index_path%>';
+    })
+  }
+}
+
+if (blockstackSession.isUserSignedIn()) {
+  Array.from(signinButtons).forEach(function(el) {
+    el.classList.add('hide');
+  })
+}
+</script>

@@ -19,7 +19,7 @@
 .icon--extra-large { font-size: $spacing-extra-large !important; }
 .italic { font-style: italic; }
 .vertical-middle { vertical-align: middle; }
-.hide { display: none; }
+.hide { display: none !important; }
 .radio-group--max-height { height: 100% !important; }
 .height-100 { height: 100px !important; }
 .height-200 { height: 200px !important; }

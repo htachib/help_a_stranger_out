@@ -2,7 +2,7 @@
 <html>
 <head>
   <!-- Customize the site name here and page names inside each view -->
-  <%= metamagic site: "Speedrail", title: [:site, :title], separator: " | " %>
+  <%= metamagic site: "Help A Stranger Out", title: [:site, :title], separator: " | " %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
@@ -13,7 +13,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container mt-24 container_padding">
+  <div class="container mt-24 mb-96 container_padding">
     <%= render "shared/header" %>
     <%= yield %>
   </div>

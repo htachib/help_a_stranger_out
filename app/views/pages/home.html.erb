@@ -1,11 +1,106 @@
-<% meta title: "Strangers in Kind | Home", description: "Strangers helping strangers." %>
+<% meta title: "Home", description: "Help a stranger out." %>
 
 <div class="row text-center">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
-    <h1>Anonymous Acts of Kindness</h1><br>
-    <h2>Make a social impact by helping a stranger today.</h2>
-    <%= image_tag 'landing/berumuda-donating.png', alt: 'Help out a stranger' %>
-    <%= link_to 'get started', new_user_registration_path, class: 'button button--large' %>
+  <div class="col-md-12">
+    <h1>Help A Stranger Out</h1>
+    <div class="col-md-5 centered empty-state__image">
+      <%= image_tag 'landing/berumuda-donating.png', alt: 'Help a stranger out' %>
+    </div>
+    <div class="mt-12">
+      <%= link_to 'sign up', new_user_registration_path, class: 'button button--large' %>
+      <%= link_to 'dashboard', dashboard_index_path, class: 'button button--large button--color-blue' %>
+    </div>
   </div>
+</div>
+
+<div class="mt-48">
+  <div class="empty-state empty-state--no-gutter">
+    <div class="empty-state__content">
+      <div class="empty-state__title">
+        <h2>Launch a domino effect.</h2>
+      </div>
+
+      <div class="empty-state__description">
+        <p>Kindness breeds kindness</p>
+      </div>
+
+      <div class="empty-state__buttons">
+      </div>
+    </div>
+
+    <div class="empty-state__image">
+      <%= image_tag 'landing/clip-working-together.png', alt: 'Kindness breeds kindness', class: 'empty-state__images' %>
+    </div>
+  </div>
+</div>
+
+<div class="mt-48">
+  <div class="empty-state empty-state--no-gutter">
+    <div class="empty-state__image">
+      <%= image_tag 'landing/clip-praise.png', alt: 'Everything counts', class: 'empty-state__image' %>
+    </div>
+
+    <div class="empty-state__content">
+      <div class="empty-state__title">
+        <h2>Everything counts.</h2>
+      </div>
+
+      <div class="empty-state__description">
+        <p>Even the smallest acts of kindness creates a social impact</p>
+      </div>
+
+      <div class="empty-state__buttons">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-48">
+  <div class="empty-state empty-state--no-gutter">
+    <div class="empty-state__content">
+      <div class="empty-state__title">
+        <h2>Stranger to stranger.</h2>
+      </div>
+
+      <div class="empty-state__description">
+        <p>Help a stranger to boost their faith in humanity</p>
+      </div>
+
+      <div class="empty-state__buttons">
+      </div>
+    </div>
+
+    <div class="empty-state__image">
+      <%= image_tag 'landing/clip-burden.png', alt: 'Restore faith in humanity', class: 'empty-state__image' %>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="mt-48">
+  <div class="empty-state empty-state--no-gutter">
+    <div class="empty-state__image">
+      <%= image_tag 'landing/clip-celebrate-group.png', alt: 'Celebrate', class: 'empty-state__image' %>
+    </div>
+
+
+    <div class="empty-state__content">
+      <div class="empty-state__title">
+        <h2>Anonymous generosity.</h2>
+      </div>
+
+      <div class="empty-state__description">
+        <p>Minimize solicitations and maximize focus on the impact</p>
+      </div>
+
+      <div class="empty-state__buttons">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-48 text-center">
+  <%= link_to 'sign up', new_user_registration_path, class: 'button button--large' %>
+  <%= link_to 'dashboard', dashboard_index_path, class: 'button button--large button--color-blue' %>
 </div>

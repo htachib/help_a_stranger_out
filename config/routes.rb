@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :dashboard, only: [:index]
+  resources :acts, only: [:index, :update, :show, :edit]
+  resources :users, only: [:show, :create, :edit, :update]
 
   # payments
   resources :charges, only: [:create, :destroy]

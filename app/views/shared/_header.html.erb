@@ -1,7 +1,12 @@
 <%= render "shared/flash" %>
 
-<nav class="nav">
-  <ul>
+<nav class="nav overflow-hidden">
+  <div class="float-left">
+    <%= link_to root_path do %>
+      <span class="icon-audience color-orange icon--extra-large"></span>
+    <% end %>
+  </div>
+  <ul class="float-right">
     <% if current_user %>
       <li>
         <%= link_to 'dashboard', dashboard_index_path, class: active_tab(root_path)  %>

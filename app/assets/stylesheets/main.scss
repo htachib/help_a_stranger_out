@@ -6,6 +6,18 @@
 .display-block { display: block }
 .form__description { color: $gray !important; }
 .text-underline { text-decoration: underline; }
+.centered { margin: 0 auto; }
+.position-bottom-right { position: absolute; bottom: 25px; right: 25px; }
+.position-relative { position: relative; }
+.cursor-pointer { cursor: pointer; }
+.overflow-hidden { overflow: hidden; }
+.float-left { float: left; }
+.float-right { float: right; }
+.icon--large { font-size: $spacing-large !important; }
+.icon--extra-large { font-size: $spacing-extra-large !important; }
+.italic { font-style: italic; }
+
+
 
 hr {
   margin-bottom: 24px;
@@ -89,4 +101,17 @@ hr {
 // iPhone 6+
 @media only screen and (min-device-width : 414px) and (max-device-width : 736px) {
 	// insert
+}
+
+.icons-text {
+  position: absolute;
+  left: 50%;
+  display: none;
+  padding: 12px;
+  border-radius: 3px;
+  box-shadow: 8px 14px 38px rgba(0,0,0,.04), 0 3px 5px rgba(0,0,0,.04);
+  color: #000;
+  background-color: $gray-lightest;
+  z-index: 1;
+  white-space: nowrap;
 }

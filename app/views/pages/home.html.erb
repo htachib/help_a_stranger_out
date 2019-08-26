@@ -8,7 +8,7 @@
     </div>
     <div class="mt-12">
       <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
-      <%= link_to 'feed', deed_index_path, class: 'button button--large button--color-blue', data: { turbolinks: false} %>
+      <%= link_to 'feed', deeds_path, class: 'button button--large button--color-blue', data: { turbolinks: false} %>
     </div>
   </div>
 </div>
@@ -102,7 +102,7 @@
 
 <div class="mt-48 text-center">
   <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
-  <%= link_to 'feed', deed_index_path, class: 'button button--large button--color-blue' %>
+  <%= link_to 'feed', deeds_path, class: 'button button--large button--color-blue' %>
 </div>
 
 <script type="text/javascript">
@@ -124,7 +124,7 @@ for (let el of signinButtons) {
 if (window.location.search.indexOf('authResponse') > -1) {
   if (blockstackSession.isSignInPending()) {
     blockstackSession.handlePendingSignIn().then(userData => {
-      window.location.href = '<%= deed_index_path %>';
+      window.location.href = '<%= deeds_path %>';
     })
   }
 }

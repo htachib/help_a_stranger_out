@@ -47,16 +47,6 @@
         }
       });
     },
-    get: function(id, callback) {
-      $.ajax({
-        url: '/deeds/' + id,
-        type: 'get',
-        dataType: 'json',
-        success: function(json) {
-          callback(json);
-        }
-      });
-    },
     update: function(data, id, callback) {
       $.ajax({
         url: '/deeds/' + id,
@@ -69,42 +59,25 @@
         }
       });
     },
-    delete: function(el) {
-      var id = $(el).parents('tr').attr('data-id');
-      var self = this;
-      $.ajax({
-        url: '/deeds/' + id,
-        type: 'delete',
-        success: function() {
-          self.list.delete(id);
-          TemplateManager.renderTemplate();
-        }
-      });
-    },
     addDeed: function(data) {
       var deed = Object.create(Deed);
       deed.init(data);
       this.list.add(deed);
     },
+    removeDeed: function(id) {
+      this.list.remove(id);
+    },
     init: function() {
-      var deedList = Object.create(DeedList);
+      var deedList = Object.create(PublicDeedList);
       this.list = deedList.init();
       return this;
     }
   }
-
-  var DeedList = {
+//Handles community list
+  var PublicDeedList = {
     add: function(deed) {
       this.all.push(deed);
-      DeedBlockstackManager.add(deed);
-    },
-    delete: function(id) {
-      var self = this;
-      this.all.forEach(function(deed, idx) {
-        if (deed.id === parseInt(id, 10)) {
-          self.all.splice(idx, 1);
-        }
-      });
+      UserDeedList.add(deed.id);
     },
     findById: function(id) {
       return this.all.find(function(deed, idx) {
@@ -117,19 +90,19 @@
       deed.description = data.description;
       deed.thumbnail = data.thumbnail;
     },
-    all: [],
+    all: [], // keeps all detailed deeds
     init: function() {
       return this;
     }
   }
 
   // For BLockstack storage
-  var DeedBlockstackManager = {
+  var UserDeedList = {
     init: function() {
       this.getDeedList();
       return this;
     },
-    all: [],
+    all: [], // keeps a list of Ids
     path: 'deeds',
     getDeedList: function() {
       BlockstackManager.getFile(this.path, this.getCallback.bind(this));
@@ -139,9 +112,28 @@
         this.all = JSON.parse(file);
       }
     },
-    add: function(deed) {
-      this.all.push(deed);
-      this.pushDeedList();
+    add: function(id) {
+      if (this.all.includes(id)) {
+        alert("You've already included this to your Deeds List!");
+      } else {
+        this.all.push(id);
+        this.pushDeedList();
+      }
+    },
+    delete: function(id) {
+      var self = this;
+      if (this.all.includes(id)) {
+        self.all.forEach(function(deed_id, idx) {
+          if (deed_id === id) {
+            self.all.splice(idx, 1);
+          }
+        });
+      } else {
+        alert("This isn't on your list!");
+      }
+    },
+    copy: function(id) {
+      this.add(id);
     },
     pushDeedList: function() {
       BlockstackManager.putFile(this.path, this.all, this.pushCallback.bind(this));
@@ -179,7 +171,7 @@
   // DeedManager.init();
   BlockstackManager.init(blockstackSession);
   DeedManager.init();
-  DeedBlockstackManager.init();
+  UserDeedList.init();
 
 
 </script>

@@ -1,6 +1,6 @@
 <div class="card" data-deed="<%= id %>">
   <div class="card__body">
-    <h3><%=title %></h3>
+    <h3 data-title="<%= id %>"><%=title %></h3>
     <div class="row">
       <div class="col-md-4 callout--shadow">
         <div class="empty-state__image">
@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="col-md-8 pl-24 position-relative">
-        <div class="empty-state__description">
+        <div class="empty-state__description" data-description="<%= id %>">
           <%= description %>
         </div>
         <div class="card__footer pl-0 mt-12 italic">
@@ -49,6 +49,10 @@
 <div class="mt-48"></div>
 
 <script type="text/javascript">
+  var copyDeedButtons = document.getElementsByClassName('icon-plus');
+  var removeDeedButtons = document.getElementsByClassName('icon-remove');
+  var budgetDeedButtons = document.getElementsByClassName('icon-budget');
+
   $(".icons-item").hover(function() {
     $(this).siblings('.icons-text').css('display', 'block');
     $(this).addClass('color-black');
@@ -56,4 +60,47 @@
     $(this).siblings('.icons-text').css('display', 'none');
     $(this).removeClass('color-black');
   });
+
+
+// copy deed to user list if click on + sign
+  for (let el of copyDeedButtons) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      var card = findParentBySelector(this, '.card');
+      var id = card.getAttribute('data-deed');
+      // var title = card.querySelector('h3[data-title="' + id + '"]').textContent;
+      // var thumbnail = card.querySelector('img[data-thumbnail]').getAttribute('data-thumbnail');
+      // var description = card.querySelector('div[data-description]').textContent.replace(/\s+/g, " ").trim();
+      UserDeedList.copy(id);
+      hideIcon(this);
+    })
+  }
+
+// remove deed from user list if click on + sign
+  for (let el of removeDeedButtons) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      var card = findParentBySelector(this, '.card');
+      var id = card.getAttribute('data-deed');
+      UserDeedList.delete(id);
+      hideIcon(this);
+    })
+  }
+
+  function findParentBySelector(elm, selector) {
+    var all = document.querySelectorAll(selector);
+    var cur = elm.parentNode;
+    while(cur && !collectionHas(all, cur)) { //keep going up until you find a match
+        cur = cur.parentNode; //go up
+    }
+    return cur; //will return null if not found
+  }
+
+  function collectionHas(a, b) { //helper function (see below)
+    for(var i = 0, len = a.length; i < len; i ++) {
+        if(a[i] == b) return true;
+    }
+    return false;
+  }
+
 </script>

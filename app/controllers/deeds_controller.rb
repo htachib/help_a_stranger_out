@@ -20,5 +20,4 @@ class DeedsController < ApplicationController
   def deed_params
     params.permit(:title, :thumbnail, :description, :funding_amount)
   end
-
 end

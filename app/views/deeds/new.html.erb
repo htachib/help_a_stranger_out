@@ -5,11 +5,48 @@
   <div class="mb-48"></div>
   <%= render partial: 'shared/form/input_textarea', locals: {id: 'description', label: 'Description', description: 'Describe the good deed that helps out a stranger', input_class: 'height-100' } %>
   <div class="mb-48"></div>
-  <%= render 'shared/form/radio_thumbnail' %>
+  <%= render partial: 'shared/form/radio_thumbnail', locals: {id: 'thumbnail'} %>
   <div class="mt-48"></div>
-  <%= render partial: 'shared/form/toggle', locals: {id: 'shareable', label: 'Add to Community Deed Library?'} %>
   <%= render partial: 'shared/form/toggle', locals: {id: 'funding', label: 'Needs Funding?'} %>
   <%= render partial: 'shared/form/input_short_toggled', locals: {id: 'funding_amount', label: 'Funding Amount in USD', toggle_id: 'funding' } %>
   <div class="mt-48"></div>
-  <button type="button" class="button">Publish Deed</button>
+  <button type="button" class="button" id='publish'>Publish Deed</button>
 </form>
+
+<script type="text/javascript">
+  $(document).on('click', "#publish", function(e) {
+    e.preventDefault();
+    FormManager.submitForm();
+  });
+
+  var FormManager = {
+      getFormData: function() {
+        var result = {};
+        var formData = {};
+        $('form').serializeArray().forEach(el => formData[el.name] = el.value);
+        result['title'] = formData.title;
+        result['description'] = formData.description;
+        result['funding_amount'] = formData.funding_amount;
+        result['thumbnail'] = formData.thumbnail;
+        return result;
+      },
+      submitForm: function() {
+        var data = this.getFormData();
+        if (this.validate(data)) {
+          DeedManager.create(data, DeedList.add(data));
+        }
+      },
+      validate: function(formData) {
+        if (formData.title.length < 1) {
+          alert("You must enter a title.");
+          return false;
+        } else if (formData.description.length < 1){
+          alert("You must enter a title.");
+          return false
+        } else {
+          return true;
+        }
+      },
+    };
+
+</script>

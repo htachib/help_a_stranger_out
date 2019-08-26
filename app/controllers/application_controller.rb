@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
 	end
 
 	def after_sign_in_path_for(resource)
-		feed_index_path
+		deed_index_path
 	end
 end

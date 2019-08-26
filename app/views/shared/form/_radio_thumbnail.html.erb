@@ -3,32 +3,32 @@
     <div class="radio-group__label">Choose a Thumbnail Picture</div>
 
     <div class="">
-      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_1_pic'>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='recognize_pic'>
         <div class="empty-state__image">
           <%= image_tag 'deeds/recognize.png', alt: 'Recognize' %>
         </div>
       </div>
-      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_2_pic'>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='lift-a-burden_pic'>
         <div class="empty-state__image">
           <%= image_tag 'deeds/lift-a-burden.png', alt: 'Lift a burden' %>
         </div>
       </div>
-      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_3_pic'>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='spread-positivity_pic'>
         <div class="empty-state__image">
           <%= image_tag 'deeds/spread-positivity.png', alt: 'Spread positivity' %>
         </div>
       </div>
-      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_4_pic'>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='donate-time_pic'>
         <div class="empty-state__image">
           <%= image_tag 'deeds/donate-time.png', alt: 'Donate Time' %>
         </div>
       </div>
-      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_5_pic'>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='donate-money_pic'>
         <div class="empty-state__image">
           <%= image_tag 'deeds/donate-money.png', alt: 'Donate Money' %>
         </div>
       </div>
-      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='radio_6_pic'>
+      <div class="col-md-2 pl-0 pr-0 display-inline-block hide" id='give-a-hand_pic'>
         <div class="empty-state__image">
           <%= image_tag 'deeds/give-a-hand.png', alt: 'Give a Hand' %>
         </div>
@@ -37,49 +37,50 @@
 
 
     <div class="radio">
-      <input type="radio" name="Radio" id="radio_1" value="radio_1">
-      <label for="radio_1">
+      <input type="radio" name="<%= id %>" id="recognize" value="recognize">
+      <label for="recognize">
         Recognize
       </label>
     </div>
 
     <div class="radio">
-      <input type="radio" name="Radio" id="radio_2" value="radio_2">
-      <label for="radio_2">
+      <input type="radio" name="<%= id %>" id="lift-a-burden" value="lift-a-burden">
+      <label for="lift-a-burden">
         Lift a burden
       </label>
     </div>
 
     <div class="radio">
-      <input type="radio" name="Radio" id="radio_3" value="radio_3">
-      <label for="radio_3">
+      <input type="radio" name="<%= id %>" id="spread-positivity" value="spread-positivity">
+      <label for="spread-positivity">
         Spread positivity
       </label>
     </div>
 
     <div class="radio">
-      <input type="radio" name="Radio" id="radio_4" value="radio_4">
-      <label for="radio_4">
+      <input type="radio" name="<%= id %>" id="donate-time" value="donate-time">
+      <label for="donate-time">
         Donate time
       </label>
     </div>
 
     <div class="radio">
-      <input type="radio" name="Radio" id="radio_5" value="radio_5">
-      <label for="radio_5">
+      <input type="radio" name="<%= id %>" id="donate-money" value="donate-money">
+      <label for="donate-money">
         Donate money
       </label>
     </div>
 
     <div class="radio">
-      <input type="radio" name="Radio" id="radio_6" value="radio_6" checked="checked">
-      <label for="radio_6">
+      <input type="radio" name="<%= id %>" id="give-a-hand" value="give-a-hand" checked="checked">
+      <label for="give-a-hand">
         Give a hand
       </label>
     </div>
 </div>
 
 <script type="text/javascript">
+  var thumbnails = document.querySelectorAll("input[type='radio']");
   showThumbnail();
 
   $("input[type='radio']").on('change', function() {
@@ -87,13 +88,14 @@
   })
 
   function showThumbnail() {
-    $("input[type='radio']").each(function(e) {
-      var radio_id = 'radio_' + (e + 1);
-      var pic_id = '#radio_' + (e + 1) + '_pic';
-      if (document.getElementById(radio_id).checked) {
-        $(pic_id).removeClass('hide');
+
+    thumbnails.forEach(function(el) {
+      var picId = el.id + '_pic';
+      var picEl = document.getElementById(picId);
+      if (el.checked == true) {
+        picEl.classList.remove('hide');
       } else {
-        $(pic_id).addClass('hide');
+        picEl.classList.add('hide');
       }
     });
   }

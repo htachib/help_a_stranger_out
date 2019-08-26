@@ -15,3 +15,161 @@
 </script>
 
 <script src="https://cdn.orangecss.com/1.0.0/js/orange.min.js"></script>
+
+<script type="text/javascript">
+  var Deed = {
+    init: function(data) {
+      this.id = data.id;
+      this.title = data.title;
+      this.description = data.description;
+      this.thumbnail = data.thumbnail;
+      return this;
+    }
+  }
+
+  var TemplateManager = {
+
+  }
+
+// For local storage and database
+  var DeedManager = {
+    create: function(data, callback) {
+      $.ajax({
+        url: '/deeds',
+        type: 'post',
+        dataType: 'json',
+        data: data,
+        success: function(json) {
+          callback(json);
+        }
+      });
+    },
+    get: function(id, callback) {
+      $.ajax({
+        url: '/deeds/' + id,
+        type: 'get',
+        dataType: 'json',
+        success: function(json) {
+          callback(json);
+        }
+      });
+    },
+    update: function(data, id, callback) {
+      $.ajax({
+        url: '/deeds/' + id,
+        type: 'put',
+        dataType: 'json',
+        data: data,
+        success: function(json) {
+          callback(data, id);
+          TemplateManager.renderWithActiveSideNav(due_date);
+        }
+      });
+    },
+    delete: function(el) {
+      var id = $(el).parents('tr').attr('data-id');
+      var self = this;
+      $.ajax({
+        url: '/deeds/' + id,
+        type: 'delete',
+        success: function() {
+          self.list.delete(id);
+          TemplateManager.renderTemplate();
+        }
+      });
+    },
+    addDeed: function() {
+      var deed = Object.create(Deed);
+      deed.init(data);
+      this.list.add(deed);
+    },
+    init: function() {
+      var deedList = Object.create(DeedList);
+      this.list = deedList.init();
+      return this;
+    }
+  }
+
+  var DeedList = {
+    add: function(deed) {
+      this.all.push(deed);
+      DeedBlockstackManager.add(deed);
+    },
+    delete: function(id) {
+      var self = this;
+      this.all.forEach(function(deed, idx) {
+        if (deed.id === parseInt(id, 10)) {
+          self.all.splice(idx, 1);
+        }
+      });
+    },
+    findById: function(id) {
+      return this.all.find(function(deed, idx) {
+        return id == deed.id;
+      });
+    },
+    update: function(data, id) {
+      var deed = this.findById(id);
+      deed.title = data.title;
+      deed.description = data.description;
+      deed.thumbnail = data.thumbnail;
+    },
+    all: [],
+    init: function() {
+      this.all = DeedBlockstackManager.init();
+      return this;
+    }
+  }
+
+  // For BLockstack storage
+  var DeedBlockstackManager = {
+    init: function() {
+      this.getDeedList();
+      return this;
+    },
+    all: [],
+    path: 'deeds',
+    getDeedList: function() {
+      var path = this.path;
+      Blockstack.getFile(path, this.saveDeedList);
+    },
+    saveDeedList: function(file) {
+      var deeds = JSON.parse(file)
+      this.all = deeds;
+    },
+    add: function(deed) {
+      return 'something'
+    },
+    // addDeed: function() {
+    //
+    // },
+  }
+
+  var BlockstackManager = {
+    init: function(session) {
+      this.session = session;
+      this.userData = session.loadUserData();
+      return this;
+    },
+    opts: function() {
+      return {decrypt: userData.appPrivateKey, verify: true}
+    },
+    getFile: function(path, callback) {
+      this.session.getFile(path, opts).then((file) => {
+        if (file !== null) {
+          callback(file);
+        }
+      });
+    },
+    putFile: function(path, obj, callback) {
+      this.session.putFile(path, JSON.stringify(obj), opts).then((files) => {
+        callback();
+      });
+    }
+  }
+
+  // TemplateManager.init();
+  // DeedManager.init();
+  blockstackManager = BlockstackManager.init(blockstackSession);
+
+</script>

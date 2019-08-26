@@ -8,7 +8,7 @@ module ApplicationHelper
     # ExecJS.eval "blockstackSession.isUserSignedIn()"
   end
 
-  def deeds_image(category)
+  def deeds_thumbnail(category)
     'deeds/' + category + '.png'
   end
 end

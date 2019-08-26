@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'pages#home'
   get '/auth/blockstack/callback' => 'pages#blockstack_callback'
 
-  resources :feed, only: [:index]
+  # resources :feed, only: [:index]
+  get '/feed', to: 'deeds#index'
   resources :deeds, only: [:index, :create, :show, :edit, :new]
   resources :stories, only: [:create, :show, :edit, :new]
 

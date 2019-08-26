@@ -1,5 +1,7 @@
 <h2>Create a Custom Deed</h2>
 
+<%= render 'shared/errors', item: @deed %>
+
 <form class="form form--large">
   <%= render partial: 'shared/form/input_short', locals: {id: 'title', label: 'Title'} %>
   <div class="mb-48"></div>
@@ -33,7 +35,7 @@
       submitForm: function() {
         var data = this.getFormData();
         if (this.validate(data)) {
-          DeedManager.create(data, DeedList.add(data));
+          DeedManager.create(data);
         }
       },
       validate: function(formData) {

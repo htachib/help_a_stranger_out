@@ -17,6 +17,8 @@
 <script src="https://cdn.orangecss.com/1.0.0/js/orange.min.js"></script>
 
 <script type="text/javascript">
+
+
   var Deed = {
     init: function(data) {
       this.id = data.id;
@@ -33,14 +35,15 @@
 
 // For local storage and database
   var DeedManager = {
-    create: function(data, callback) {
+    create: function(data) {
       $.ajax({
         url: '/deeds',
         type: 'post',
         dataType: 'json',
         data: data,
         success: function(json) {
-          callback(json);
+          DeedManager.addDeed(json);
+          window.location.pathname = '/profile'
         }
       });
     },
@@ -78,7 +81,7 @@
         }
       });
     },
-    addDeed: function() {
+    addDeed: function(data) {
       var deed = Object.create(Deed);
       deed.init(data);
       this.list.add(deed);
@@ -116,7 +119,6 @@
     },
     all: [],
     init: function() {
-      this.all = DeedBlockstackManager.init();
       return this;
     }
   }
@@ -130,19 +132,23 @@
     all: [],
     path: 'deeds',
     getDeedList: function() {
-      var path = this.path;
-      Blockstack.getFile(path, this.saveDeedList);
+      BlockstackManager.getFile(this.path, this.getCallback.bind(this));
     },
-    saveDeedList: function(file) {
-      var deeds = JSON.parse(file)
-      this.all = deeds;
+    getCallback: function(file) {
+      if (file !== null) {
+        this.all = JSON.parse(file);
+      }
     },
     add: function(deed) {
-      return 'something'
+      this.all.push(deed);
+      this.pushDeedList();
     },
-    // addDeed: function() {
-    //
-    // },
+    pushDeedList: function() {
+      BlockstackManager.putFile(this.path, this.all, this.pushCallback.bind(this));
+    },
+    pushCallback: function() {
+      alert('Updated your deeds list!');
+    }
   }
 
   var BlockstackManager = {
@@ -151,18 +157,19 @@
       this.userData = session.loadUserData();
       return this;
     },
-    opts: function() {
-      return {decrypt: userData.appPrivateKey, verify: true}
+    getOpts: function() {
+      return {decrypt: this.userData.appPrivateKey, verify: true}
+    },
+    putOpts: function() {
+      return {'Content-Type': 'string', sign: this.userData.appPrivateKey}
     },
     getFile: function(path, callback) {
-      this.session.getFile(path, opts).then((file) => {
-        if (file !== null) {
-          callback(file);
-        }
+      this.session.getFile(path, this.getOpts()).then((file) => {
+        callback(file);
       });
     },
-    putFile: function(path, obj, callback) {
-      this.session.putFile(path, JSON.stringify(obj), opts).then((files) => {
+    putFile: function(path, file, callback) {
+      this.session.putFile(path, JSON.stringify(file), this.putOpts()).then((data) => {
         callback();
       });
     }
@@ -170,6 +177,9 @@
 
   // TemplateManager.init();
   // DeedManager.init();
-  blockstackManager = BlockstackManager.init(blockstackSession);
+  BlockstackManager.init(blockstackSession);
+  DeedManager.init();
+  DeedBlockstackManager.init();
+
 
 </script>

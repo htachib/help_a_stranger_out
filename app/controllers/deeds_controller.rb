@@ -1,27 +1,14 @@
 class DeedsController < ApplicationController
 
   def new
-    render 'deeds/new'
+    @deed = Deed.new
   end
 
   def create
-    deed = Deed.new(deed_params)
+    @deed = Deed.new(deed_params)
+    @deed.save
 
-    if deed.save
-      flash[:notice] = 'Your deed was published.'
-      render '/profile'  # create a currrent user helper method?
-    else
-      render 'new'
-    end
-  end
-
-  def show
-  end
-
-  def edit
-  end
-
-  def update
+    render json: @deed
   end
 
   def index

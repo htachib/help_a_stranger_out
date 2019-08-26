@@ -7,9 +7,8 @@ Rails.application.routes.draw do
   resources :deeds, only: [:index, :create, :show, :edit, :new]
   resources :stories, only: [:create, :show, :edit, :new]
 
-  get '/profile', to: 'users#show'
+  get '/profile', to: 'pages#profile'
   resources :users, only: [:show, :create, :edit, :update]
-
 
 
   # payments

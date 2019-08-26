@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="col-sm-3">
-        <div class="callout callout--color-blue">
+        <div class="callout callout--color-primary">
           <h1>2</h1>
           <p>
             <strong>Deeds in Progress</strong><br>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="col-sm-3">
-        <div class="callout callout--color-gray">
+        <div class="callout callout--color-primary">
           <h1>10</h1>
           <p>
             <strong>Smiles</strong><br>
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="col-sm-3">
-        <div class="callout callout--color-green">
+        <div class="callout callout--color-primary">
           <h1>$45</h1>
           <p>
             <strong>$ Raised</strong><br>
@@ -48,5 +48,5 @@
 <%= render partial: 'shared/card', locals: {title: 'Carrying Groceries', description: 'Help a stranger carry groceries from the store to their car.', times_completed: 35, in_progress: nil } %>
 <%= render partial: 'shared/card', locals: {title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', times_completed: 3, in_progress: nil } %>
 
-<%= link_to 'See More', dashboard_index_path, class: 'button button--large button--color-blue' %>
+<%= link_to 'See More', feed_index_path, class: 'button button--large button--color-blue' %>
 <%= link_to 'Create a Custom Deed', new_deed_path, class: 'button button--large' %>

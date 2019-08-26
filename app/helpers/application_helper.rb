@@ -7,4 +7,8 @@ module ApplicationHelper
     # binding.pry
     # ExecJS.eval "blockstackSession.isUserSignedIn()"
   end
+
+  def deeds_image(category)
+    'deeds/' + category + '.png'
+  end
 end

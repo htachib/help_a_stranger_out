@@ -1,12 +1,4 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
-
-  def new
-  end
-
-  def create
-  end
-
   def show
     render 'users/show'
   end
@@ -16,10 +8,4 @@ class UsersController < ApplicationController
 
   def update
   end
-
-  private
-
-  def set_user
-  end
-
 end

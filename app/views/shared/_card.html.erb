@@ -1,10 +1,10 @@
-<div class="card">
+<div class="card" data-deed="<%= id %>">
   <div class="card__body position-relative">
     <h3><%=title %></h3>
     <div class="row">
       <div class="col-md-4 callout--shadow">
         <div class="empty-state__image">
-          <%= image_tag 'dashboard/clip-carrying-blocks.png', alt: 'Helping out', class: 'empty-state__image' %>
+          <%= image_tag deeds_image(image), alt: 'Helping out', class: 'empty-state__image', data: { 'image' => image } %>
         </div>
       </div>
       <div class="col-md-8 pl-24">
@@ -16,13 +16,15 @@
             <span class='color-orange'>45</span>
             <span class="icon-profile color-orange vertical-middle"></span>
             <span class="color-gray-light">|</span>
-            <%= times_completed %> Completed
+            <span class='color-green'><%= count_completed %> Completed</span>
+            <span class="color-gray-light">|</span>
+            <span class='color-gray'><%= count_in_progress %> In Progress</span>
           </p>
         </div>
         <div class="mt-48 position-bottom-right row">
           <div class="">
             <span class="icons-item icon-plus cursor-pointer color-blue"></span>
-            <span class="icons-text">add to my todos</span>
+            <span class="icons-text">add to My Deeds</span>
           </div>
           <div class="">
             <span class="ml-6 icons-item icon-profile cursor-pointer color-orange"></span>
@@ -30,7 +32,7 @@
           </div>
           <div class="">
             <span class="ml-6 icons-item icon-budget cursor-pointer color-green"></span>
-            <span class="icons-text">give $ to smile fund</span>
+            <span class="icons-text">give $ to Smile Fund</span>
           </div>
           <% if in_progress %>
             <div class="">

@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class FeedController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_stats
 

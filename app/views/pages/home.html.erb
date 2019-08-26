@@ -4,11 +4,11 @@
   <div class="col-md-12">
     <h1>Help A Stranger Out</h1>
     <div class="col-md-5 centered empty-state__image">
-      <%= image_tag 'landing/berumuda-donating.png', alt: 'Help a stranger out' %>
+      <%= image_tag 'help-a-stranger.png', alt: 'Help a stranger out' %>
     </div>
     <div class="mt-12">
       <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
-      <%= link_to 'dashboard', dashboard_index_path, class: 'button button--large button--color-blue', data: { turbolinks: false} %>
+      <%= link_to 'feed', feed_index_path, class: 'button button--large button--color-blue', data: { turbolinks: false} %>
     </div>
   </div>
 </div>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="empty-state__image">
-      <%= image_tag 'landing/clip-working-together.png', alt: 'Kindness breeds kindness', class: 'empty-state__images' %>
+      <%= image_tag 'deeds/give-a-hand.png', alt: 'Kindness breeds kindness', class: 'empty-state__images' %>
     </div>
   </div>
 </div>
@@ -37,7 +37,7 @@
 <div class="mt-48">
   <div class="empty-state empty-state--no-gutter">
     <div class="empty-state__image">
-      <%= image_tag 'landing/clip-praise.png', alt: 'Everything counts', class: 'empty-state__image' %>
+      <%= image_tag 'deeds/recognize.png', alt: 'Everything counts', class: 'empty-state__image' %>
     </div>
 
     <div class="empty-state__content">
@@ -71,7 +71,7 @@
     </div>
 
     <div class="empty-state__image">
-      <%= image_tag 'landing/clip-burden.png', alt: 'Restore faith in humanity', class: 'empty-state__image' %>
+      <%= image_tag 'deeds/lift-a-burden.png', alt: 'Restore faith in humanity', class: 'empty-state__image' %>
     </div>
 
 
@@ -81,7 +81,7 @@
 <div class="mt-48">
   <div class="empty-state empty-state--no-gutter">
     <div class="empty-state__image">
-      <%= image_tag 'landing/clip-celebrate-group.png', alt: 'Celebrate', class: 'empty-state__image' %>
+      <%= image_tag 'celebrate.png', alt: 'Celebrate', class: 'empty-state__image' %>
     </div>
 
 
@@ -102,9 +102,40 @@
 
 <div class="mt-48 text-center">
   <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
-  <%= link_to 'dashboard', dashboard_index_path, class: 'button button--large button--color-blue' %>
+  <%= link_to 'feed', feed_index_path, class: 'button button--large button--color-blue' %>
 </div>
 
 <script type="text/javascript">
+var signoutButton = document.getElementById('signout-button');
+var signinButtons = document.getElementsByClassName('signin-button');
 
+signoutButton.addEventListener('click', function(e) {
+  e.preventDefault();
+  blockstackSession.signUserOut(window.location.origin)
+})
+
+for (let el of signinButtons) {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    blockstackSession.redirectToSignIn();
+  })
+}
+
+if (window.location.search.indexOf('authResponse') > -1) {
+  if (blockstackSession.isSignInPending()) {
+    blockstackSession.handlePendingSignIn().then(userData => {
+      window.location.href = '<%= feed_index_path %>';
+    })
+  }
+}
+
+function hideLogin() {
+  Array.from(signinButtons).forEach(function(el) {
+    el.classList.add('hide');
+  })
+}
+
+if (blockstackSession.isUserSignedIn()) {
+  hideLogin();
+}
 </script>

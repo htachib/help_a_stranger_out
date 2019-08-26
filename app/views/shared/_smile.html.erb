@@ -1,0 +1,32 @@
+<script type="text/javascript">
+  var smileDeedButtons = document.getElementsByClassName('icon-profile');
+
+  // uptick deed smiles on click
+    for (let el of smileDeedButtons) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        var card = findParentBySelector(this, '.card');
+        var id = card.getAttribute('data-deed');
+        Smile.uptick({deed_id: id});
+        var counterEl = card.querySelector('span[data-smile-count="' + id + '"]');
+        var count = parseFloat(counterEl.textContent, 10) + 1;
+        counterEl.textContent = count;
+      });
+    }
+
+  var Smile = {
+    uptick: function(data) {
+      $.ajax({
+        url: '/smiles',
+        type: 'post',
+        dataType: 'json',
+        data: data,
+        success: function(json) {
+          console.log('Smile posted!');
+        }
+      });
+    }
+  }
+
+
+</script>

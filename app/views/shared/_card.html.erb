@@ -22,7 +22,7 @@
           <div class="">
             <span class="ml-6 icons-item icon-profile cursor-pointer color-orange vertical-middle"></span>
             <span class="icons-text">smile</span>
-            <span class='color-orange'>45</span>
+            <span class='color-orange' data-smile-count="<%= id %>">45</span>
           </div>
         </div>
         <div class="mt-48 position-bottom-right row">
@@ -61,7 +61,6 @@
     $(this).removeClass('color-black');
   });
 
-
 // copy deed to user list if click on + sign
   for (let el of copyDeedButtons) {
     el.addEventListener('click', function(e) {
@@ -76,7 +75,7 @@
     })
   }
 
-// remove deed from user list if click on + sign
+// remove deed from user list if click on remove sign
   for (let el of removeDeedButtons) {
     el.addEventListener('click', function(e) {
       e.preventDefault();
@@ -84,7 +83,7 @@
       var id = card.getAttribute('data-deed');
       UserDeedList.delete(id);
       hideIcon(this);
-    })
+    });
   }
 
   function findParentBySelector(elm, selector) {

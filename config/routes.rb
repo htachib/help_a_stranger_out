@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/feed', to: 'deeds#index'
   resources :deeds, only: [:index, :create, :show, :edit, :new]
   resources :stories, only: [:create, :show, :edit, :new]
+  resources :smiles, only: [:create]
 
   get '/profile', to: 'pages#profile'
   resources :users, only: [:show, :create, :edit, :update]

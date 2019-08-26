@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_26_130310) do
+ActiveRecord::Schema.define(version: 2019_08_26_133557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,16 +19,17 @@ ActiveRecord::Schema.define(version: 2019_08_26_130310) do
     t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_slug"
+    t.text "description"
+    t.string "title"
   end
 
   create_table "smiles", force: :cascade do |t|
     t.bigint "user_id"
-    t.string "voteable_type"
-    t.bigint "voteable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "deed_id"
     t.index ["user_id"], name: "index_smiles_on_user_id"
-    t.index ["voteable_type", "voteable_id"], name: "index_smiles_on_voteable_type_and_voteable_id"
   end
 
   create_table "stats", force: :cascade do |t|

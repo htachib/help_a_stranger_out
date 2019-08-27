@@ -9,21 +9,21 @@
           </div>
         </div>
         <div class="col-md-8 pl-24 position-relative">
-          <div class="empty-state__description" data-description="{{id}}">
-            {{description}}
+          <div class="empty-state__description">
+            <p data-description="{{id}}">{{{description}}}</p>
           </div>
           <div class="card__footer pl-0 mt-12 italic">
             <p>
-              <span class='color-green'>{{count_completed}} Completed</span>
+              <span class='color-green'><span data-count-completed="{{id}}">{{count_completed}}</span> Completed</span>
               <span class="color-gray-light">|</span>
-              <span class='color-gray'>{{count_in_progress}} In Progress</span>
+              <span class='color-gray'><span data-count-in-progress="{{id}}">{{count_in_progress}}</span> In Progress</span>
             </p>
           </div>
           <div class="position-bottom-left">
             <div class="smile-button">
               <span class="ml-6 icons-item icon-profile cursor-pointer color-orange vertical-middle"></span>
               <span class="icons-text">smile</span>
-              <span class='color-orange' data-smile-count="{{id}}">{{count_smiles_given}}</span>
+              <span class='color-orange' data-count-smiles-given="{{id}}">{{count_smiles_given}}</span>
             </div>
           </div>
           <div class="mt-48 position-bottom-right row">

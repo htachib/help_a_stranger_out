@@ -1,0 +1,21 @@
+<%= render "shared/card_listeners" %>
+<%= render "shared/smile" %>
+
+<script type="text/javascript">
+  var allDeedsDiv = document.getElementById('all-deeds');
+
+  document.addEventListener('DOMContentLoaded', function() {
+    TemplateManager.loadPublicDeeds(populateCards);
+  });
+
+  function populateCards(deedsList) {
+    renderDeed(deedsList);
+    addCardListeners();
+    addSmileListeners();
+  }
+
+  function renderDeed(deeds) {
+    var card = HandlebarsTemplates['deed_card']({deeds: deeds});
+    allDeedsDiv.innerHTML = allDeedsDiv.innerHTML + card;
+  }
+</script>

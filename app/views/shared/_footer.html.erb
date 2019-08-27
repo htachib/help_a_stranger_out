@@ -18,6 +18,9 @@
 <script src="https://cdn.orangecss.com/1.0.0/js/orange.min.js"></script>
 
 <script type="text/javascript">
+  var Constants = {
+    path: 'deeds',
+  }
 
   var Deed = {
     init: function(data) {
@@ -25,12 +28,12 @@
       this.title = data.title;
       this.description = data.description;
       this.thumbnail = data.thumbnail;
+      this.funding_amount = data.funding_amount;
+      this.count_completed = data.count_completed;
+      this.count_in_progress = data.count_in_progress;
+      this.count_smiles_given = data.count_smiles_given;
       return this;
     }
-  }
-
-  function callIt(json) {
-    console.log(json);
   }
 
   var TemplateManager = {
@@ -45,7 +48,7 @@
         TemplateManager.updatePublicDeeds(json);
         return PublicDeedList.all;
       }).then(function(data) {
-        callback(data); // 3
+        callback(data);
       })
     },
     publicDeeds: function() {
@@ -54,7 +57,16 @@
     updatePublicDeeds: function(json) {
       PublicDeedList.init(json);
       return 'true';
-    }
+    },
+    loadUserDeeds: function(callback) {
+      BlockstackManager.session.getFile(Constants.path, BlockstackManager.getOpts()).then((file) => {
+        gottenDeeds = JSON.parse(file);
+        UserDeedList.all = gottenDeeds;
+        inProgress = UserDeedList.sortInProgress();
+        completed = UserDeedList.sortCompleted();
+        callback(inProgress, completed);
+      });
+    },
   }
 
 // For local storage and database
@@ -71,33 +83,8 @@
         }
       });
     },
-    readDatabase: function() {
-      debugger;
-      $.ajax({
-        url: '/deeds',
-        type: 'get',
-        dataType: 'json',
-        data: data,
-        success: function(json) {
-          var arrayDeeds = JSON.parse('<%= @arrayDeeds %>');
-          PublicDeedList.download(arrayDeeds);
-        }
-      });
-    },
-    // update: function(data, id, callback) {
-    //   $.ajax({
-    //     url: '/deeds/' + id,
-    //     type: 'put',
-    //     dataType: 'json',
-    //     data: data,
-    //     success: function(json) {
-    //       callback(data, id);
-    //       TemplateManager.renderWithActiveSideNav(due_date);
-    //     }
-    //   });
-    // },
     addDeed: function(data) {
-      var deed = Object.create(Deed);
+      var deed = Object.create(Deed); // when user creates a new Deed through form
       deed.init(data);
       this.list.add(deed);
     },
@@ -114,7 +101,10 @@
   var PublicDeedList = {
     add: function(deed) {
       this.all.push(deed);
-      UserDeedList.add(deed.id);
+      UserDeedList.add(deed);
+    },
+    getById: function(id) {
+
     },
     findById: function(id) {
       return this.all.find(function(deed, idx) {
@@ -140,72 +130,65 @@
   // For Blockstack storage
   var UserDeedList = {
     init: function() {
-      this.getDeedList();
-      return this;
+      BlockstackManager.session.getFile(Constants.path, BlockstackManager.getOpts()).then((file) => {
+        gottenDeeds = JSON.parse(file);
+        this.all = gottenDeeds;
+      });
     },
-    all: [], // keeps a list of Ids
-    path: 'deeds',
-    getDeedList: function() {
-      UserProfile.getFile(this.path, this.getCallback.bind(this));
-    },
-    getCallback: function(file) {
-      if (file !== null) {
-        this.all = JSON.parse(file);
-      }
-    },
+    all: [],
     sortInProgress: function() {
       return this.all.filter(deed => !deed.completed_at);
     },
     sortCompleted: function() {
       return this.all.filter(deed => !!deed.completed_at);
     },
-    prepareObj: function(id) {
-      return {
-        id: id,
-        started_at: new Date(),
-        completed_at: null
-      }
+    prepareObj: function(deed) {
+      deed['started_at'] = new Date();
+      deed['completed_at'] = null;
+      return deed;
     },
-    submit: function(id) {
-      var obj = this.prepareObj(id);
+    prepare: function(deed) {
+      var obj = this.prepareObj(deed);
       this.all.push(obj);
     },
-    add: function(id) {
-      if (this.all.includes(id)) {
-        alert("You've already included this to your Deeds List!");
-      } else {
-        this.submit(id);
-        this.pushDeedList();
+    add: function(deed) {
+      this.prepare(deed);
+      this.pushDeedList();
+    },
+    alreadyIncluded: function(deed) {
+      if (this.all.includes(deed)) {
+        alert("Error! Already included in your deed list");
       }
     },
     delete: function(id) {
       var self = this;
+
+      // TODO - filter thene dleete UserDeedList.all.filter(function(el) { return el.id == '1' })
       if (this.all.includes(id)) {
         self.all.forEach(function(deed_id, idx) {
           if (deed_id === id) {
             self.all.splice(idx, 1);
           }
         });
+
+        // todo: set this.all == result
+        // todo: this.pushDeedList();
       } else {
         alert("This isn't on your list!");
       }
     },
-    copy: function(id) {
-      this.add(id);
-    },
     pushDeedList: function() {
-      UserProfile.putFile(this.path, this.all, this.pushCallback.bind(this));
+      BlockstackManager.putFile(this.pushCallback.bind(this));
     },
     pushCallback: function() {
       alert('Updated your deeds list!');
     }
   }
 
-  var UserProfile = {
+  var BlockstackManager = {
     init: function(session) {
       this.session = session;
       this.userData = session.loadUserData();
-      UserDeedList.init();
       return this;
     },
     signedIn: function() {
@@ -221,56 +204,21 @@
       return {decrypt: this.userData.appPrivateKey, verify: true}
     },
     putOpts: function() {
-      return {'Content-Type': 'string', sign: this.userData.appPrivateKey}
+      return {'Content-Type': 'json', sign: this.userData.appPrivateKey}
     },
-    getFile: function(path, callback) {
-      this.session.getFile(path, this.getOpts()).then((file) => {
+    getFile: function(callback) {
+      BlockstackManager.session.getFile(Constants.path, BlockstackManager.getOpts()).then((file) => {
         callback(file);
       });
     },
-    putFile: function(path, file, callback) {
-      this.session.putFile(path, JSON.stringify(file), this.putOpts()).then((data) => {
+    putFile: function(callback) {
+      BlockstackManager.session.putFile(Constants.path, JSON.stringify(UserDeedList.all), this.putOpts()).then((data) => {
         callback();
       });
     }
   }
 
-  UserProfile.init(blockstackSession);
+  BlockstackManager.init(blockstackSession);
+  UserDeedList.init();
   DeedManager.init();
-
-  // userData = blockstackSession.loadUserData();
-  // arr = ['2','3','6'];
-  // putOpts = {'Content-Type': 'string', sign: userData.appPrivateKey};
-  //
-  // var putResult = [];
-  //
-  // function putIt(file) {
-  //   putResult = file;
-  // }
-  //
-  // blockstackSession.putFile('deeds', JSON.stringify(arr), putOpts).then((data) => {
-  //   readIt(data);
-  // });
-
-  // blockstackSession.putFile('deeds', getResult, putOpts).then((data) => {
-  //   readIt(data);
-  // });
-
-
-  // getOpts = {decrypt: userData.appPrivateKey, verify: true}
-  //
-  // var getResult = [];
-  //
-  // function getIt(file) {
-  //   getResult = file;
-  // }
-  //
-  // blockstackSession.getFile('deeds', getOpts).then((file) => {
-  //   getIt(file);
-  // });
-  // UserProfile.putFile('deeds', readIt);
-
-
-
-
 </script>

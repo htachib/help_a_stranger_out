@@ -1,0 +1,29 @@
+<%= render "shared/card_listeners" %>
+<%= render "shared/smile" %>
+
+<script type="text/javascript">
+  var profileDeedsInProgressDiv = document.getElementById('profile-deeds-in-progress');
+  var profileDeedsCompletedDiv = document.getElementById('profile-deeds-completed');
+
+  document.addEventListener('DOMContentLoaded', function() {
+    TemplateManager.loadUserDeeds(setupCards);
+  });
+
+  function setupCards(inProgress, completed) {
+    renderDeed(inProgress, completed);
+    addCardListeners();
+    addSmileListeners();
+  }
+
+  function renderDeed(inProgress, completed) {
+    createTemplate(inProgress, profileDeedsInProgressDiv);
+    createTemplate(completed, profileDeedsCompletedDiv);
+  }
+
+  function createTemplate(deedsList, el) {
+    if (!!deedsList && (deedsList.length > 0)) {
+      var card = HandlebarsTemplates['deed_card']({deeds: deedsList});
+      el.innerHTML = el.innerHTML + card;
+    }
+  }
+</script>

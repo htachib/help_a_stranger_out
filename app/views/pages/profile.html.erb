@@ -5,7 +5,7 @@
     <h5>Your Activity</h5>
     <div class="row">
       <div class="col-sm-4">
-        <div class="callout callout--color-primary">
+        <div class="callout callout--color-primary no-pointer">
           <h1 id='user-deeds-completed'>5</h1>
           <p>
             <strong>Deeds Completed</strong><br>
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="callout callout--color-primary">
+        <div class="callout callout--color-primary no-pointer">
           <h1 id='user-deeds-in-progress'>2</h1>
           <p>
             <strong>Deeds in Progress</strong><br>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="col-sm-4">
-        <div class="callout callout--color-primary">
+        <div class="callout callout--color-primary no-pointer">
           <h1 id='user-funds-raised'>$45</h1>
           <p>
             <strong>$ Raised</strong><br>
@@ -34,22 +34,14 @@
 
 <div class="mt-48"></div>
 <h2>My Deeds In Progress</h2>
-
-<%= render partial: 'shared/card', locals: {id: 1, thumbnail: 'spread-positivity', title: 'Give Toll $', description: "Pay for someone's groceries behind you.", count_completed: 12, count_in_progress: 12, in_progress: true, count_smiles_given: 2 } %>
+<div id="profile-deeds-in-progress"></div>
 
 <h2>Completed Deeds</h2>
-<%= render partial: 'shared/card', locals: {id: 2, thumbnail: 'spread-positivity', title: 'Carrying Groceries', description: 'Help a stranger carry groceries from the store to their car.', count_completed: 35, count_in_progress: 12, in_progress: nil, count_smiles_given: 2 } %>
-<%= render partial: 'shared/card', locals: {id: 3, thumbnail: 'spread-positivity', title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', count_completed: 3, count_in_progress: 12, in_progress: nil, count_smiles_given: 2 } %>
-
-<%= link_to 'See More', deeds_path, class: 'button button--large button--color-blue' %>
+<div class="profile-deeds-completed"></div>
+<%= link_to 'See More', deeds_path, class: 'button button--large button--color-blue', data: { turbolinks: false } %>
 <%= link_to 'Create a Custom Deed', new_deed_path, class: 'button button--large' %>
 
-<%= render "shared/card_listeners" %>
+<%= render "shared/render_profile_feed" %>
 
 <script type="text/javascript">
-  document.addEventListener('DOMContentLoaded', function() {
-    var deedsInProgress = UserDeedList.sortInProgress();
-    var deedsCompleted = UserDeedList.sortCompleted();
-
-  });
 </script>

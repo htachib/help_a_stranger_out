@@ -1,36 +1,57 @@
 <script type="text/javascript">
-  var copyDeedButtons = document.getElementsByClassName('icon-plus');
-  var removeDeedButtons = document.getElementsByClassName('icon-remove');
-  var budgetDeedButtons = document.getElementsByClassName('icon-budget');
+  function addCardListeners() {
+    var copyDeedButtons = document.getElementsByClassName('icon-plus');
+    var removeDeedButtons = document.getElementsByClassName('icon-remove');
+    var budgetDeedButtons = document.getElementsByClassName('icon-budget');
 
-// copy deed to user list if click on + sign
-  for (let el of copyDeedButtons) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      var card = findParentBySelector(this, '.card');
-      var id = card.getAttribute('data-deed');
-      UserDeedList.copy(id);
-      hideIcon(el);
+  // copy deed to user list if click on + sign
+    for (let el of copyDeedButtons) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        var card = findParentBySelector(this, '.card');
+        var id = card.getAttribute('data-deed');
+        var data = extractData(id);
+        UserDeedList.add(data); // todo
+        hideIcon(el);
 
-      Stats.tick('deeds-in-progress', true, id);
-    })
-  }
+        Stats.tick('deeds-in-progress', true, id);
+      })
+    }
 
-// remove deed from user list if click on remove sign
-  for (let el of removeDeedButtons) {
-    el.addEventListener('click', function(e) {
-      e.preventDefault();
-      var card = findParentBySelector(this, '.card');
-      var id = card.getAttribute('data-deed');
-      UserDeedList.delete(id);
-      hideIcon(el);
+  // remove deed from user list if click on remove sign
+    for (let el of removeDeedButtons) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        var card = findParentBySelector(this, '.card');
+        var id = card.getAttribute('data-deed');
+        debugger;
+        UserDeedList.delete(id);
+        hideIcon(el);
 
-      Stats.tick('deeds-in-progress', false, id);
-    });
+        Stats.tick('deeds-in-progress', false, id);
+      });
+    }
   }
 
   function hideIcon(icon) {
     icon.parentElement.classList.add('hide');
+  }
+
+  function extractData(id) {
+    var obj = {};
+    obj['id'] = id;
+    obj['title'] = getSelector("[data-title='"+ id + "']");
+    obj['description'] = getSelector("[data-description='"+ id + "']");
+    obj['thumbnail'] = document.querySelector("[data-deed='"+ id + "'] img").getAttribute('data-thumbnail');
+    obj['funding_amount'] = 0; // update funding later
+    obj['count_completed'] = getSelector("[data-count-completed='"+ id + "']");
+    obj['count_in_progress'] = getSelector("[data-count-in-progress='"+ id + "']");
+    obj['count_smiles_given'] = getSelector("[data-count-smiles-given='"+ id + "']");
+    return obj;
+  }
+
+  function getSelector(selector) {
+    return document.querySelector(selector).innerHTML;
   }
 
 </script>

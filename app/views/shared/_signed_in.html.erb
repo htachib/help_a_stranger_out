@@ -15,7 +15,7 @@
   var pathName = window.location.pathname;
 
   document.addEventListener('DOMContentLoaded', function() {
-    var signedIn = UserProfile.signedIn();
+    var signedIn = BlockstackManager.signedIn();
     if (signedIn) {
       hideByClass(signInButtons);
     } else {

@@ -1,19 +1,21 @@
 <script type="text/javascript">
-  var smileDeedButtons = document.getElementsByClassName('icon-profile');
+  function addSmileListeners() {
+    var smileDeedButtons = document.getElementsByClassName('icon-profile');
 
-  // uptick deed smiles on click
+    // uptick deed smiles on click
     for (let el of smileDeedButtons) {
       el.addEventListener('click', function(e) {
         e.preventDefault();
         var card = findParentBySelector(this, '.card');
         var id = card.getAttribute('data-deed');
         Smile.uptick({deed_id: id});
-        var counterEl = card.querySelector('span[data-smile-count="' + id + '"]');
+        var counterEl = card.querySelector('span[data-count-smiles-given="' + id + '"]');
         var count = parseFloat(counterEl.textContent, 10) + 1;
         counterEl.textContent = count;
         Stats.tick('smiles-given', true, id);
       });
     }
+  }
 
   var Smile = {
     uptick: function(data) {
@@ -28,6 +30,7 @@
       });
     }
   }
+
 
 
 </script>

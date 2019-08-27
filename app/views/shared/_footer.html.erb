@@ -42,22 +42,22 @@
         data: data,
         success: function(json) {
           DeedManager.addDeed(json);
-          window.location.pathname = '/profile'
+          window.location.pathname = '/profile';
         }
       });
     },
-    update: function(data, id, callback) {
-      $.ajax({
-        url: '/deeds/' + id,
-        type: 'put',
-        dataType: 'json',
-        data: data,
-        success: function(json) {
-          callback(data, id);
-          TemplateManager.renderWithActiveSideNav(due_date);
-        }
-      });
-    },
+    // update: function(data, id, callback) {
+    //   $.ajax({
+    //     url: '/deeds/' + id,
+    //     type: 'put',
+    //     dataType: 'json',
+    //     data: data,
+    //     success: function(json) {
+    //       callback(data, id);
+    //       TemplateManager.renderWithActiveSideNav(due_date);
+    //     }
+    //   });
+    // },
     addDeed: function(data) {
       var deed = Object.create(Deed);
       deed.init(data);

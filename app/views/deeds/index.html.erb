@@ -17,9 +17,8 @@
 </div>
 <div class="mt-24"></div>
 
-<% Deeds::Base.count.times do |idx| %>
-  <% deed = Deeds::Base.find_by_id(idx + 1) %>
-  <%= render partial: 'shared/card', locals: {id: idx + 1, thumbnail: deed[:thumbnail], title: deed[:title].html_safe, description: deed[:description].html_safe, count_completed: 0, count_in_progress: 0, in_progress: nil } %>
+<% @deeds.each do |deed| %>
+  <%= render partial: 'shared/card', locals: {id: deed.id, thumbnail: deed.thumbnail, title: deed.title.html_safe, description: deed.description.html_safe, count_completed: deed.count_completed, count_in_progress: deed.count_in_progress, count_smiles_given: deed.count_smiles_given } %>
 <% end %>
 
 <script type="text/javascript">

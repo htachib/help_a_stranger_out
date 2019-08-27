@@ -36,8 +36,17 @@
         var data = this.getFormData();
         if (this.validate(data)) {
           DeedManager.create(data);
-          Stats.tick('deeds-for-funding', true);
+          FormManager.incrementStats(data);
         }
+      },
+      incrementStats: function(data) {
+        var nextDeedId = '<%= Deed.maximum(:id).next %>'
+
+        if (data.funding_amount > 0) {
+          Stats.tick('deeds-for-funding', true, nextDeedId);
+        }
+
+        Stats.tick('deeds-in-progress', true, nextDeedId);
       },
       validate: function(formData) {
         if (formData.title.length < 1) {

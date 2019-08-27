@@ -7,7 +7,7 @@ class StatsController < ApplicationController
   private
 
   def stat_params
-    params.permit(:stat_type, :direction)
+    params.permit(:stat_type, :direction, :deed_id)
   end
 
   # def smiles_given

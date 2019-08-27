@@ -5,23 +5,23 @@
   var countDeedsCompleted = document.querySelector('h1[data-type="deeds-for-funding"]');
 
   var Stats = {
-    tick: function(statType, direction) {
-      var data = {stat_type: statType, direction: direction}
+    tick: function(statType, direction, deed_id) {
+      this.data = {stat_type: statType, direction: direction, deed_id: deed_id}
 
       $.ajax({
         url: '/stats',
         type: 'post',
         dataType: 'json',
-        data: data,
+        data: this.data,
         success: function(data) {
-          this.updateBoard(data);
+          Stats.updateBoard();
         }
       });
     },
-    updateBoard: function(data) {
-      debugger; // Check todo
-      var id = data.statType;
-      var int = change(data.direction);
+    data: {},
+    updateBoard: function() {
+      var id = this.data.stat_type;
+      var int = this.change(this.data.direction);
 
       var counterEl = document.querySelector('h1[data-type="' + id + '"]');
       var count = parseFloat(counterEl.textContent, 10) + int;

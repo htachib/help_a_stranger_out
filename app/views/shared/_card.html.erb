@@ -22,7 +22,7 @@
           <div class="">
             <span class="ml-6 icons-item icon-profile cursor-pointer color-orange vertical-middle"></span>
             <span class="icons-text">smile</span>
-            <span class='color-orange' data-smile-count="<%= id %>">45</span>
+            <span class='color-orange' data-smile-count="<%= id %>"><%= count_smiles_given %></span>
           </div>
         </div>
         <div class="mt-48 position-bottom-right row">
@@ -34,12 +34,10 @@
             <span class="icons-item icon-plus cursor-pointer color-blue"></span>
             <span class="icons-text">add to My Deeds</span>
           </div>
-          <% if in_progress %>
             <div class="">
               <span class="ml-6 icons-item icon-remove cursor-pointer color-red"></span>
               <span class="icons-text">remove from My Deeds In Progress</span>
             </div>
-          <% end %>
         </div>
       </div>
     </div>
@@ -71,9 +69,9 @@
       // var thumbnail = card.querySelector('img[data-thumbnail]').getAttribute('data-thumbnail');
       // var description = card.querySelector('div[data-description]').textContent.replace(/\s+/g, " ").trim();
       UserDeedList.copy(id);
-      hideIcon(this);
+      hideIcon(el);
 
-      Stats.tick('deeds-in-progress', true);
+      Stats.tick('deeds-in-progress', true, id);
     })
   }
 
@@ -84,9 +82,9 @@
       var card = findParentBySelector(this, '.card');
       var id = card.getAttribute('data-deed');
       UserDeedList.delete(id);
-      hideIcon(this);
+      hideIcon(el);
 
-      Stats.tick('deeds-in-progress', false);
+      Stats.tick('deeds-in-progress', false, id);
     });
   }
 

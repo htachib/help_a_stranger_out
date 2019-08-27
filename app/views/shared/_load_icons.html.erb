@@ -9,16 +9,16 @@
         var card = findParentBySelector(el, '.card');
         var id = card.getAttribute('data-deed');
         if (UserDeedList.all.includes(id)) {
-          hideIcon(this);
+          hideIcon(el);
         }
       }
 
     // hide remove buttons if not in user list
       for (let el of removeDeedButtons) {
-        var card = findParentBySelector(this, '.card');
+        var card = findParentBySelector(el, '.card');
         var id = card.getAttribute('data-deed');
         if (!UserDeedList.all.includes(id)) {
-          hideIcon(this);
+          hideIcon(el);
         }
       }
 

@@ -1,5 +1,6 @@
 <div class="footer" style="text-align:center" id="footer">
-  <!-- your footer content -->
+  <%= content_tag :div, class: "public_deeds_list", data: {public_deeds: @public_deeds} do %>
+  <% end %>
 </div>
 
 <!-- google analytics -->
@@ -28,8 +29,32 @@
     }
   }
 
-  var TemplateManager = {
+  function callIt(json) {
+    console.log(json);
+  }
 
+  var TemplateManager = {
+    promisePublicDeeds: function() {
+      return new Promise(function(resolve, reject) {
+        var json = JSON.parse(TemplateManager.publicDeeds());
+        resolve(json);
+      });
+    },
+    loadPublicDeeds: function(callback) {
+      this.promisePublicDeeds().then(function(json, callback) {
+        TemplateManager.updatePublicDeeds(json);
+        return PublicDeedList.all;
+      }).then(function(data) {
+        callback(data); // 3
+      })
+    },
+    publicDeeds: function() {
+      return document.querySelector('.public_deeds_list').getAttribute('data-public-deeds');
+    },
+    updatePublicDeeds: function(json) {
+      PublicDeedList.init(json);
+      return 'true';
+    }
   }
 
 // For local storage and database
@@ -43,6 +68,19 @@
         success: function(json) {
           DeedManager.addDeed(json);
           window.location.pathname = '/profile';
+        }
+      });
+    },
+    readDatabase: function() {
+      debugger;
+      $.ajax({
+        url: '/deeds',
+        type: 'get',
+        dataType: 'json',
+        data: data,
+        success: function(json) {
+          var arrayDeeds = JSON.parse('<%= @arrayDeeds %>');
+          PublicDeedList.download(arrayDeeds);
         }
       });
     },
@@ -83,6 +121,9 @@
         return id == deed.id;
       });
     },
+    download: function(data) {
+      this.all = data;
+    },
     update: function(data, id) {
       var deed = this.findById(id);
       deed.title = data.title;
@@ -90,7 +131,8 @@
       deed.thumbnail = data.thumbnail;
     },
     all: [], // keeps all detailed deeds
-    init: function() {
+    init: function(deeds) {
+      this.all = deeds;
       return this;
     }
   }

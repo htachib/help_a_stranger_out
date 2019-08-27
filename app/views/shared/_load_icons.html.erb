@@ -1,9 +1,18 @@
 <script type="text/javascript">
-  var copyDeedButtons = document.getElementsByClassName('icon-plus');
-  var removeDeedButtons = document.getElementsByClassName('icon-remove');
-  var budgetDeedButtons = document.getElementsByClassName('icon-budget');
+  // var copyDeedButtons = document.getElementsByClassName('icon-plus');
+  // var removeDeedButtons = document.getElementsByClassName('icon-remove');
+  // var budgetDeedButtons = document.getElementsByClassName('icon-budget');
 
-  document.addEventListener('DOMContentLoaded', function() {
+  $(".icons-item").hover(function() {
+    $(this).siblings('.icons-text').css('display', 'block');
+    $(this).addClass('color-black');
+  }, function() {
+    $(this).siblings('.icons-text').css('display', 'none');
+    $(this).removeClass('color-black');
+  });
+
+
+  // document.addEventListener('DOMContentLoaded', function() {
     // hide copy buttons if already in user list
       // for (let el of copyDeedButtons) {
       //   var card = findParentBySelector(el, '.card');
@@ -28,10 +37,5 @@
   //       hideIcon(el);
   //     }
   //   }
-  });
-
-  function hideIcon(icon) {
-    icon.parentElement.classList.add('hide');
-  }
-
+  // });
 </script>

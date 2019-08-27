@@ -15,4 +15,5 @@
 //= require jquery_ujs
 //= require analytics
 //= require turbolinks
+//= require handlebars
 //= require_tree .

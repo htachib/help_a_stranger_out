@@ -21,6 +21,10 @@
   <p class=''><%= link_to 'sign in to donate and create your own deed list!', '#', class: 'no-text-decoration color-white-override' %></p>
 </div>
 
+<div id="all-deeds">
+
+</div>
+
 <% @deeds.each do |deed| %>
   <%= render partial: 'shared/card', locals: {id: deed.id, thumbnail: deed.thumbnail, title: deed.title.html_safe, description: deed.description.html_safe, count_completed: deed.count_completed, count_in_progress: deed.count_in_progress, count_smiles_given: deed.count_smiles_given } %>
 <% end %>
@@ -28,6 +32,22 @@
 <%= render "shared/card_listeners" %>
 
 <script type="text/javascript">
+
+  var allDeedsDiv = document.getElementById('all-deeds');
+
+  document.addEventListener('DOMContentLoaded', function() {
+    TemplateManager.loadPublicDeeds(populateCards);
+  });
+
+  function populateCards(deedsList) {
+    renderDeed(deedsList);
+  }
+
+  function renderDeed(deeds) {
+    var card = HandlebarsTemplates['deed_card']({deeds: deeds});
+    allDeedsDiv.innerHTML = allDeedsDiv.innerHTML + card;
+  }
+
   // var signInCallOut = document.getElementsByClassName('sign-in-callout');
   //
   // for (let el of signInCallOut) {

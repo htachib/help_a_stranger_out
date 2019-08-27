@@ -3,31 +3,34 @@
   var removeDeedButtons = document.getElementsByClassName('icon-remove');
   var budgetDeedButtons = document.getElementsByClassName('icon-budget');
 
-  // copy deed to user list if click on + sign
-    for (let el of copyDeedButtons) {
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        var card = findParentBySelector(this, '.card');
-        var id = card.getAttribute('data-deed');
-        UserDeedList.copy(id);
-        hideIcon(el);
+// copy deed to user list if click on + sign
+  for (let el of copyDeedButtons) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      var card = findParentBySelector(this, '.card');
+      var id = card.getAttribute('data-deed');
+      UserDeedList.copy(id);
+      hideIcon(el);
 
-        Stats.tick('deeds-in-progress', true, id);
-      })
-    }
+      Stats.tick('deeds-in-progress', true, id);
+    })
+  }
 
-  // remove deed from user list if click on remove sign
-    for (let el of removeDeedButtons) {
-      el.addEventListener('click', function(e) {
-        e.preventDefault();
-        var card = findParentBySelector(this, '.card');
-        var id = card.getAttribute('data-deed');
-        UserDeedList.delete(id);
-        hideIcon(el);
+// remove deed from user list if click on remove sign
+  for (let el of removeDeedButtons) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      var card = findParentBySelector(this, '.card');
+      var id = card.getAttribute('data-deed');
+      UserDeedList.delete(id);
+      hideIcon(el);
 
-        Stats.tick('deeds-in-progress', false, id);
-      });
-    }
+      Stats.tick('deeds-in-progress', false, id);
+    });
+  }
 
+  function hideIcon(icon) {
+    icon.parentElement.classList.add('hide');
+  }
 
 </script>

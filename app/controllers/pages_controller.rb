@@ -2,6 +2,9 @@ class PagesController < ApplicationController
   def home
   end
 
+  def profile
+  end
+
   def blockstack_callback
     puts 'in the callback'
     blockstack_info = request.env['omniauth.auth']

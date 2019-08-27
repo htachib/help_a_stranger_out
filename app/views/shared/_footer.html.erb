@@ -170,7 +170,36 @@
   // DeedManager.init();
   BlockstackManager.init(blockstackSession);
   DeedManager.init();
-  UserDeedList.init();
+  var userDeedList = UserDeedList.init();
+
+  // userData = blockstackSession.loadUserData();
+  // arr = ['2','3','6'];
+  // putOpts = {'Content-Type': 'string', sign: userData.appPrivateKey};
+  //
+  // var putResult = [];
+  //
+  // function putIt(file) {
+  //   putResult = file;
+  // }
+  //
+  // blockstackSession.putFile('deeds', JSON.stringify(arr), putOpts).then((data) => {
+  //   readIt(data);
+  // });
+  //
+  // getOpts = {decrypt: userData.appPrivateKey, verify: true}
+  //
+  // var getResult = [];
+  //
+  // function getIt(file) {
+  //   getResult = file;
+  // }
+  //
+  // blockstackSession.getFile('deeds', getOpts).then((file) => {
+  //   getIt(file);
+  // });
+  // BlockstackManager.putFile('deeds', readIt);
+
+
 
 
 </script>

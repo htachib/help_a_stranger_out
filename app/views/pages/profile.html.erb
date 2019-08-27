@@ -42,11 +42,26 @@
 
 <div class="mt-48"></div>
 <h2>My Deeds In Progress</h2>
-<%= render partial: 'shared/card', locals: {id: 1, thumbnail: 'spread-positivity', title: 'Give Toll $', description: "Pay for someone's groceries behind you.", count_completed: 12, count_in_progress: 12, in_progress: true } %>
+<%= render partial: 'shared/card', locals: {id: 1, thumbnail: 'spread-positivity', title: 'Give Toll $', description: "Pay for someone's groceries behind you.", count_completed: 12, count_in_progress: 12, in_progress: true, count_smiles_given: 2 } %>
 
 <h2>Browse More Deeds</h2>
-<%= render partial: 'shared/card', locals: {id: 2, thumbnail: 'spread-positivity', title: 'Carrying Groceries', description: 'Help a stranger carry groceries from the store to their car.', count_completed: 35, count_in_progress: 12, in_progress: nil } %>
-<%= render partial: 'shared/card', locals: {id: 3, thumbnail: 'spread-positivity', title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', count_completed: 3, count_in_progress: 12, in_progress: nil } %>
+<%= render partial: 'shared/card', locals: {id: 2, thumbnail: 'spread-positivity', title: 'Carrying Groceries', description: 'Help a stranger carry groceries from the store to their car.', count_completed: 35, count_in_progress: 12, in_progress: nil, count_smiles_given: 2 } %>
+<%= render partial: 'shared/card', locals: {id: 3, thumbnail: 'spread-positivity', title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', count_completed: 3, count_in_progress: 12, in_progress: nil, count_smiles_given: 2 } %>
 
 <%= link_to 'See More', deeds_path, class: 'button button--large button--color-blue' %>
 <%= link_to 'Create a Custom Deed', new_deed_path, class: 'button button--large' %>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var UserProfile = {
+      init: function(deeds) {
+        this.deeds = deeds;
+      },
+      deedsInProgress: function() {
+        return this.deeds
+      }
+    }
+
+    UserProfile.init(userDeedList.all);
+  });
+</script>

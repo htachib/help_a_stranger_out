@@ -5,30 +5,30 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     // hide copy buttons if already in user list
-      for (let el of copyDeedButtons) {
-        var card = findParentBySelector(el, '.card');
-        var id = card.getAttribute('data-deed');
-        if (UserDeedList.all.includes(id)) {
-          hideIcon(el);
-        }
-      }
+      // for (let el of copyDeedButtons) {
+      //   var card = findParentBySelector(el, '.card');
+      //   var id = card.getAttribute('data-deed');
+      //   if (UserDeedList.all.includes(id)) {
+      //     hideIcon(el);
+      //   }
+      // }
 
     // hide remove buttons if not in user list
-      for (let el of removeDeedButtons) {
-        var card = findParentBySelector(el, '.card');
-        var id = card.getAttribute('data-deed');
-        if (!UserDeedList.all.includes(id)) {
-          hideIcon(el);
-        }
-      }
+      // for (let el of removeDeedButtons) {
+      //   var card = findParentBySelector(el, '.card');
+      //   var id = card.getAttribute('data-deed');
+      //   if (!UserDeedList.all.includes(id)) {
+      //     hideIcon(el);
+      //   }
+      // }
 
     // hide dollar buttons if on own profile or on deed feed
-    if (window.location.pathname === '/profile' || window.location.pathname === '/deeds') {
-      for (let el of budgetDeedButtons) {
-        hideIcon(el);
-      }
-    }
-  });
+  //   if (window.location.pathname === '/profile' || window.location.pathname === '/deeds') {
+  //     for (let el of budgetDeedButtons) {
+  //       hideIcon(el);
+  //     }
+  //   }
+  // });
 
   function hideIcon(icon) {
     icon.parentElement.classList.add('hide');

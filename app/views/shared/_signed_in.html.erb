@@ -1,0 +1,48 @@
+<script type="text/javascript">
+  var homeButtons = document.getElementsByClassName('home-button');
+  var feedButtons = document.getElementsByClassName('feed-button');
+  var signInButtons = document.getElementsByClassName('signin-button');
+  var signOutButtons = document.getElementsByClassName('signout-button');
+  var profileButtons = document.getElementsByClassName('profile-button');
+  var
+
+  var pathName = window.location.pathname;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var signedIn = UserProfile.signedIn();
+    if (signedIn) {
+      hideByClass(signInButtons);
+    } else {
+      hideByClass(signOutButtons);
+      hideByClass(profileButtons);
+      hideByClass(feedButtons); // maybe make feed available to logged out users
+    }
+
+
+    // if signedIn() {
+    // }
+  });
+
+  // var UserProfile = {
+  //   init: function(deeds) {
+  //     debugger;
+  //     this.deeds = deeds;
+  //     this.userData = UserProfile.userData;
+  //   },
+  //   deedsInProgress: function() {
+  //     return this.deeds; // filter by Progress
+  //   },
+  //   signedIn: function() {
+  //     debugger;
+  //     return userDataExists && !this.userDataEmpty
+  //   },
+  //   userDataExists: function() {
+  //     return (this.userData !== null)
+  //   },
+  //   userDataEmpty: function() {
+  //     return (Object.keys(this.userData).length === 0)
+  //   }
+  // }
+
+  // UserProfile.init(UserDeedList.all);
+</script>

@@ -21,5 +21,7 @@
   <%= render partial: 'shared/card', locals: {id: deed.id, thumbnail: deed.thumbnail, title: deed.title.html_safe, description: deed.description.html_safe, count_completed: deed.count_completed, count_in_progress: deed.count_in_progress, count_smiles_given: deed.count_smiles_given } %>
 <% end %>
 
+<%= render "shared/card_listeners" %>
+
 <script type="text/javascript">
 </script>

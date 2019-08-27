@@ -1,23 +1,33 @@
 <%= render "shared/flash" %>
 
 <nav class="nav overflow-hidden">
-  <div class="float-left">
+  <div class="float-left pl-12">
     <%= link_to root_path do %>
-      <span class="icon-audience color-orange icon--extra-large"></span>
+    <div class="row col-md-12">
+      <div class="col-md-3">
+        <span class="icon-audience color-orange icon--large"></span>
+      </div>
+      <div class="col-md-9">
+        <p class="font-extrabold uppercase">Help A Stranger Out</p>
+      </div>
+    </div>
     <% end %>
   </div>
   <ul class="float-right">
     <li>
-      <%= link_to 'home', root_path, class: active_tab(root_path)  %>
+      <%= link_to 'home', root_path, class: active_tab(root_path), class: 'home-button'  %>
     </li>
     <li>
-      <%= link_to 'feed', deeds_path, data: { turbolinks: false }  %>
+      <%= link_to 'feed', deeds_path, data: { turbolinks: false }, class: 'feed-button'  %>
     </li>
     <li>
-      <%= link_to "log in", '#', class: 'signin-button' %>
+      <%= link_to 'profile', '/profile', data: { turbolinks: false }, class: 'profile-button'  %>
     </li>
     <li>
-      <%= link_to "log out", '#', id: 'signout-button' %>
+      <%= link_to "log in", '#', data: { turbolinks: false }, class: 'signin-button' %>
+    </li>
+    <li>
+      <%= link_to "log out", '#', data: { turbolinks: false }, class: 'signout-button' %>
     </li>
   </ul>
 </nav>

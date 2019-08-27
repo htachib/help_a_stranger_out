@@ -95,7 +95,7 @@
     }
   }
 
-  // For BLockstack storage
+  // For Blockstack storage
   var UserDeedList = {
     init: function() {
       this.getDeedList();
@@ -104,18 +104,35 @@
     all: [], // keeps a list of Ids
     path: 'deeds',
     getDeedList: function() {
-      BlockstackManager.getFile(this.path, this.getCallback.bind(this));
+      UserProfile.getFile(this.path, this.getCallback.bind(this));
     },
     getCallback: function(file) {
       if (file !== null) {
         this.all = JSON.parse(file);
       }
     },
+    sortInProgress: function() {
+      return this.all.filter(deed => !deed.completed_at);
+    },
+    sortCompleted: function() {
+      return this.all.filter(deed => !!deed.completed_at);
+    },
+    prepareObj: function(id) {
+      return {
+        id: id,
+        started_at: new Date(),
+        completed_at: null
+      }
+    },
+    submit: function(id) {
+      var obj = this.prepareObj(id);
+      this.all.push(obj);
+    },
     add: function(id) {
       if (this.all.includes(id)) {
         alert("You've already included this to your Deeds List!");
       } else {
-        this.all.push(id);
+        this.submit(id);
         this.pushDeedList();
       }
     },
@@ -135,18 +152,28 @@
       this.add(id);
     },
     pushDeedList: function() {
-      BlockstackManager.putFile(this.path, this.all, this.pushCallback.bind(this));
+      UserProfile.putFile(this.path, this.all, this.pushCallback.bind(this));
     },
     pushCallback: function() {
       alert('Updated your deeds list!');
     }
   }
 
-  var BlockstackManager = {
+  var UserProfile = {
     init: function(session) {
       this.session = session;
       this.userData = session.loadUserData();
+      UserDeedList.init();
       return this;
+    },
+    signedIn: function() {
+      return this.userDataExists() && !this.userDataEmpty();
+    },
+    userDataExists: function() {
+      return (this.userData !== null)
+    },
+    userDataEmpty: function() {
+      return (Object.keys(this.userData).length === 0)
     },
     getOpts: function() {
       return {decrypt: this.userData.appPrivateKey, verify: true}
@@ -166,11 +193,8 @@
     }
   }
 
-  // TemplateManager.init();
-  // DeedManager.init();
-  BlockstackManager.init(blockstackSession);
+  UserProfile.init(blockstackSession);
   DeedManager.init();
-  var userDeedList = UserDeedList.init();
 
   // userData = blockstackSession.loadUserData();
   // arr = ['2','3','6'];
@@ -197,7 +221,7 @@
   // blockstackSession.getFile('deeds', getOpts).then((file) => {
   //   getIt(file);
   // });
-  // BlockstackManager.putFile('deeds', readIt);
+  // UserProfile.putFile('deeds', readIt);
 
 
 

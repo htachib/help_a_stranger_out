@@ -2,13 +2,13 @@
 
 <div class="row text-center">
   <div class="col-md-12">
-    <h1>Help A Stranger Out</h1>
+    <h1 class='uppercase fs-alpha'>Anonymous Acts of Kindness</h1>
     <div class="col-md-5 centered empty-state__image">
       <%= image_tag 'help-a-stranger.png', alt: 'Help a stranger out' %>
     </div>
     <div class="mt-12">
       <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
-      <%= link_to 'feed', deeds_path, class: 'button button--large button--color-blue', data: { turbolinks: false} %>
+      <%= link_to 'deed feed', deeds_path, class: 'button button--large button--color-blue feed-button', data: { turbolinks: false} %>
     </div>
   </div>
 </div>
@@ -102,17 +102,19 @@
 
 <div class="mt-48 text-center">
   <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
-  <%= link_to 'feed', deeds_path, class: 'button button--large button--color-blue' %>
+  <%= link_to 'deed feed', deeds_path, class: 'button button--large button--color-blue feed-button' %>
 </div>
 
 <script type="text/javascript">
-var signoutButton = document.getElementById('signout-button');
+var signoutButtons = document.getElementsByClassName('signout-button');
 var signinButtons = document.getElementsByClassName('signin-button');
 
-signoutButton.addEventListener('click', function(e) {
-  e.preventDefault();
-  blockstackSession.signUserOut(window.location.origin)
-})
+for (let el of signoutButtons) {
+  el.addEventListener('click', function(e) {
+    e.preventDefault();
+    blockstackSession.signUserOut(window.location.origin);
+  })
+}
 
 for (let el of signinButtons) {
   el.addEventListener('click', function(e) {
@@ -121,21 +123,21 @@ for (let el of signinButtons) {
   })
 }
 
-if (window.location.search.indexOf('authResponse') > -1) {
-  if (blockstackSession.isSignInPending()) {
-    blockstackSession.handlePendingSignIn().then(userData => {
-      window.location.href = '<%= deeds_path %>';
-    })
-  }
-}
-
-function hideLogin() {
-  Array.from(signinButtons).forEach(function(el) {
-    el.classList.add('hide');
-  })
-}
-
-if (blockstackSession.isUserSignedIn()) {
-  hideLogin();
-}
+// if (window.location.search.indexOf('authResponse') > -1) {
+//   if (blockstackSession.isSignInPending()) {
+//     blockstackSession.handlePendingSignIn().then(userData => {
+//       window.location.href = '<%= deeds_path %>';
+//     })
+//   }
+// }
+//
+// function hideLogin() {
+//   Array.from(signinButtons).forEach(function(el) {
+//     el.classList.add('hide');
+//   })
+// }
+//
+// if (blockstackSession.isUserSignedIn()) {
+//   hideLogin();
+// }
 </script>

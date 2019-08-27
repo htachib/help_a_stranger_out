@@ -19,13 +19,30 @@
       });
     },
     data: {},
-    updateBoard: function() {
+    communityBoard: function() {
       var id = this.data.stat_type;
       var int = this.change(this.data.direction);
 
       var counterEl = document.querySelector('h1[data-type="' + id + '"]');
       var count = parseFloat(counterEl.textContent, 10) + int;
       counterEl.textContent = count;
+    },
+    userBoard: function() {
+      var id = this.data.stat_type;
+      if (id === 'deeds-in-progress' || id === 'deeds-completed') {
+        var int = this.change(this.data.direction);
+        var counterEl = document.querySelector('h1' + '#' + 'user-' + id);
+
+        var count = parseFloat(counterEl.textContent, 10) + int;
+        counterEl.textContent = count;
+      }
+    },
+    updateBoard: function() {
+      if (window.location.pathname == '/profile') {
+        this.userBoard();
+      } else if (window.location.pathname == '/feed') {
+        this.communityBoard();
+      }
     },
     change: function(direction) {
       if (direction) {

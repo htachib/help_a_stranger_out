@@ -34,9 +34,10 @@
 
 <div class="mt-48"></div>
 <h2>My Deeds In Progress</h2>
+
 <%= render partial: 'shared/card', locals: {id: 1, thumbnail: 'spread-positivity', title: 'Give Toll $', description: "Pay for someone's groceries behind you.", count_completed: 12, count_in_progress: 12, in_progress: true, count_smiles_given: 2 } %>
 
-<h2>Browse More Deeds</h2>
+<h2>Completed Deeds</h2>
 <%= render partial: 'shared/card', locals: {id: 2, thumbnail: 'spread-positivity', title: 'Carrying Groceries', description: 'Help a stranger carry groceries from the store to their car.', count_completed: 35, count_in_progress: 12, in_progress: nil, count_smiles_given: 2 } %>
 <%= render partial: 'shared/card', locals: {id: 3, thumbnail: 'spread-positivity', title: 'Give Coffee $', description: 'Buy a coffee for someone behind you in line at the coffee shop.', count_completed: 3, count_in_progress: 12, in_progress: nil, count_smiles_given: 2 } %>
 
@@ -46,5 +47,9 @@
 <%= render "shared/card_listeners" %>
 
 <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var deedsInProgress = UserDeedList.sortInProgress();
+    var deedsCompleted = UserDeedList.sortCompleted();
 
+  });
 </script>

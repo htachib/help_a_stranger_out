@@ -6,7 +6,7 @@ class Deed < ActiveRecord::Base
   validates :description, presence: true
   validates :thumbnail, presence: true
 
-  def total_smiles
-    self.smiles.size
+  def total_smiles(id)
+    Smile.where(deed_id: id).count
   end
 end

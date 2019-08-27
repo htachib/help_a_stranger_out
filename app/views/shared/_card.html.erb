@@ -72,6 +72,8 @@
       // var description = card.querySelector('div[data-description]').textContent.replace(/\s+/g, " ").trim();
       UserDeedList.copy(id);
       hideIcon(this);
+
+      Stats.tick('deeds-in-progress', true);
     })
   }
 
@@ -83,6 +85,8 @@
       var id = card.getAttribute('data-deed');
       UserDeedList.delete(id);
       hideIcon(this);
+
+      Stats.tick('deeds-in-progress', false);
     });
   }
 

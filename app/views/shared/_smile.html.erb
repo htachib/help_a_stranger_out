@@ -11,6 +11,8 @@
         var counterEl = card.querySelector('span[data-smile-count="' + id + '"]');
         var count = parseFloat(counterEl.textContent, 10) + 1;
         counterEl.textContent = count;
+
+        Stats.tick('smiles-given', true);
       });
     }
 

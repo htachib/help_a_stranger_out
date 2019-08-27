@@ -1,10 +1,10 @@
 <h1>Community Deed Feed</h1>
 <div class="">
   <div class="row feed_stats">
-    <%= render partial: 'stat', locals: { value: @stat_1, title: 'Deeds Completed', color: 'orange' } %>
-    <%= render partial: 'stat', locals: { value: @stat_2, title: 'Deeds in Progress', color: 'blue' } %>
-    <%= render partial: 'stat', locals: { value: @stat_3, title: 'Smiles Given', color: 'gray' } %>
-    <%= render partial: 'stat', locals: { value: @stat_4, title: 'Deeds for Funding', color: 'green' } %>
+    <%= render partial: 'stat', locals: { value: @stat_1, id: 'deeds-completed', title: 'Deeds Completed', color: 'orange' } %>
+    <%= render partial: 'stat', locals: { value: @stat_2, id: 'deeds-in-progress', title: 'Deeds in Progress', color: 'blue' } %>
+    <%= render partial: 'stat', locals: { value: @stat_3, id: 'smiles-given', title: 'Smiles Given', color: 'gray' } %>
+    <%= render partial: 'stat', locals: { value: @stat_4, id: 'deeds-for-funding', title: 'Deeds for Funding', color: 'green' } %>
   </div>
 </div>
 
@@ -21,3 +21,6 @@
   <% deed = Deeds::Base.find_by_id(idx + 1) %>
   <%= render partial: 'shared/card', locals: {id: idx + 1, thumbnail: deed[:thumbnail], title: deed[:title].html_safe, description: deed[:description].html_safe, count_completed: 0, count_in_progress: 0, in_progress: nil } %>
 <% end %>
+
+<script type="text/javascript">
+</script>

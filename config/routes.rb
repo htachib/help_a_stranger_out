@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   root 'pages#home'
   get '/auth/blockstack/callback' => 'pages#blockstack_callback'
 
-  # resources :feed, only: [:index]
   get '/feed', to: 'deeds#index'
   resources :deeds, only: [:index, :create, :show, :edit, :new]
   resources :stories, only: [:create, :show, :edit, :new]
   resources :smiles, only: [:create]
+  resources :stats, only: [:create, :update]
 
   get '/profile', to: 'pages#profile'
   resources :users, only: [:show, :create, :edit, :update]

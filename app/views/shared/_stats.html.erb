@@ -1,0 +1,39 @@
+<script type="text/javascript">
+  var countDeedsCompleted = document.querySelector('h1[data-type="deeds-completed"]');
+  var countDeedsInProgress = document.querySelector('h1[data-type="deeds-in-progress"]');
+  var countSmilesGiven = document.querySelector('h1[data-type="smiles-given"]');
+  var countDeedsCompleted = document.querySelector('h1[data-type="deeds-for-funding"]');
+
+  var Stats = {
+    tick: function(statType, direction) {
+      var data = {stat_type: statType, direction: direction}
+
+      $.ajax({
+        url: '/stats',
+        type: 'post',
+        dataType: 'json',
+        data: data,
+        success: function(data) {
+          this.updateBoard(data);
+        }
+      });
+    },
+    updateBoard: function(data) {
+      debugger; // Check todo
+      var id = data.statType;
+      var int = change(data.direction);
+
+      var counterEl = document.querySelector('h1[data-type="' + id + '"]');
+      var count = parseFloat(counterEl.textContent, 10) + int;
+      counterEl.textContent = count;
+    },
+    change: function(direction) {
+      if (direction) {
+        return 1;
+      } else{
+        return -1;
+      }
+    }
+  }
+
+</script>

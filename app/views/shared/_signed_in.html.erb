@@ -4,7 +4,13 @@
   var signInButtons = document.getElementsByClassName('signin-button');
   var signOutButtons = document.getElementsByClassName('signout-button');
   var profileButtons = document.getElementsByClassName('profile-button');
-  var
+  var smileButtons = document.getElementsByClassName('smile-button');
+  var donateButtons = document.getElementsByClassName('donate-button');
+  var copyDeedButtons = document.getElementsByClassName('copy-deed-button');
+  var removeDeedButtons = document.getElementsByClassName('remove-deed-button');
+  var navHome = document.querySelector('nav .home-button');
+  var navFeed = document.querySelector('nav .feed-button');
+  var navProfile = document.querySelector('nav .profile-button');
 
   var pathName = window.location.pathname;
 
@@ -15,34 +21,19 @@
     } else {
       hideByClass(signOutButtons);
       hideByClass(profileButtons);
-      hideByClass(feedButtons); // maybe make feed available to logged out users
+      hideByClass(smileButtons);
+      hideByClass(donateButtons);
+      hideByClass(copyDeedButtons);
+      hideByClass(removeDeedButtons);
     }
 
-
-    // if signedIn() {
-    // }
+    if (pathName === '/') {
+      navHome.classList.add('is-active');
+    } else if (pathName === '/profile') {
+      navProfile.classList.add('is-active');
+    } else if (pathName === '/deeds') {
+      navFeed.classList.add('is-active');
+    }
   });
 
-  // var UserProfile = {
-  //   init: function(deeds) {
-  //     debugger;
-  //     this.deeds = deeds;
-  //     this.userData = UserProfile.userData;
-  //   },
-  //   deedsInProgress: function() {
-  //     return this.deeds; // filter by Progress
-  //   },
-  //   signedIn: function() {
-  //     debugger;
-  //     return userDataExists && !this.userDataEmpty
-  //   },
-  //   userDataExists: function() {
-  //     return (this.userData !== null)
-  //   },
-  //   userDataEmpty: function() {
-  //     return (Object.keys(this.userData).length === 0)
-  //   }
-  // }
-
-  // UserProfile.init(UserDeedList.all);
 </script>

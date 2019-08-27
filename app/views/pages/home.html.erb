@@ -106,22 +106,6 @@
 </div>
 
 <script type="text/javascript">
-var signoutButtons = document.getElementsByClassName('signout-button');
-var signinButtons = document.getElementsByClassName('signin-button');
-
-for (let el of signoutButtons) {
-  el.addEventListener('click', function(e) {
-    e.preventDefault();
-    blockstackSession.signUserOut(window.location.origin);
-  })
-}
-
-for (let el of signinButtons) {
-  el.addEventListener('click', function(e) {
-    e.preventDefault();
-    blockstackSession.redirectToSignIn();
-  })
-}
 
 // if (window.location.search.indexOf('authResponse') > -1) {
 //   if (blockstackSession.isSignInPending()) {

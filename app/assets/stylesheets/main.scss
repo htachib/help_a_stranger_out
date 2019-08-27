@@ -11,7 +11,7 @@
 .position-bottom-right { position: absolute; bottom: 25px; right: 25px; }
 .position-bottom-left { position: absolute; bottom: 25px; left: 25px; }
 .position-relative { position: relative; }
-.cursor-pointer { cursor: pointer; }
+.cursor-pointer { cursor: pointer !important; }
 .overflow-hidden { overflow: hidden; }
 .overflow-auto { overflow: auto; }
 .float-left { float: left; }
@@ -27,9 +27,11 @@
 .height-300 { height: 300px !important; }
 .uppercase { text-transform: uppercase; }
 .margin-middle { margin: auto 0; }
+.no-text-decoration { text-decoration: none !important;}
+.color-white-override { color: white !important }
 
 
-.callout:hover {
+.no-pointer:hover {
   cursor: default !important;
 }
 

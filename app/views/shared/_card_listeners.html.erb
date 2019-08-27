@@ -24,13 +24,24 @@
         e.preventDefault();
         var card = findParentBySelector(this, '.card');
         var id = card.getAttribute('data-deed');
-        debugger;
         UserDeedList.delete(id);
-        hideIcon(el);
+        hideCard(card);
 
         Stats.tick('deeds-in-progress', false, id);
       });
     }
+
+    $(".icons-item").hover(function() {
+      $(this).siblings('.icons-text').css('display', 'block');
+      $(this).addClass('color-black');
+    }, function() {
+      $(this).siblings('.icons-text').css('display', 'none');
+      $(this).removeClass('color-black');
+    });
+  }
+
+  function hideCard(card) {
+    card.classList.add('hide');
   }
 
   function hideIcon(icon) {

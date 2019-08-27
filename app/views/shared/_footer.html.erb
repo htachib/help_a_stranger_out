@@ -161,21 +161,12 @@
       }
     },
     delete: function(id) {
-      var self = this;
-
-      // TODO - filter thene dleete UserDeedList.all.filter(function(el) { return el.id == '1' })
-      if (this.all.includes(id)) {
-        self.all.forEach(function(deed_id, idx) {
-          if (deed_id === id) {
-            self.all.splice(idx, 1);
-          }
-        });
-
-        // todo: set this.all == result
-        // todo: this.pushDeedList();
-      } else {
-        alert("This isn't on your list!");
-      }
+      UserDeedList.all.forEach(function(deed, idx) {
+        if (deed.id == id) {
+          UserDeedList.all.splice(idx, 1);
+        }
+      });
+      this.pushDeedList();
     },
     pushDeedList: function() {
       BlockstackManager.putFile(this.pushCallback.bind(this));

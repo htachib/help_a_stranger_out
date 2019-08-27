@@ -1,39 +1,41 @@
 <script type="text/javascript">
-  var homeButtons = document.getElementsByClassName('home-button');
-  var feedButtons = document.getElementsByClassName('feed-button');
-  var signInButtons = document.getElementsByClassName('signin-button');
-  var signOutButtons = document.getElementsByClassName('signout-button');
-  var profileButtons = document.getElementsByClassName('profile-button');
-  var smileButtons = document.getElementsByClassName('smile-button');
-  var donateButtons = document.getElementsByClassName('donate-button');
-  var copyDeedButtons = document.getElementsByClassName('copy-deed-button');
-  var removeDeedButtons = document.getElementsByClassName('remove-deed-button');
-  var navHome = document.querySelector('nav .home-button');
-  var navFeed = document.querySelector('nav .feed-button');
-  var navProfile = document.querySelector('nav .profile-button');
+  function handleSignInStatus() {
+    var homeButtons = document.getElementsByClassName('home-button');
+    var feedButtons = document.getElementsByClassName('feed-button');
+    var signInButtons = document.getElementsByClassName('signin-button');
+    var signOutButtons = document.getElementsByClassName('signout-button');
+    var profileButtons = document.getElementsByClassName('profile-button');
+    var smileButtons = document.getElementsByClassName('smile-button');
+    var donateButtons = document.getElementsByClassName('donate-button');
+    var copyDeedButtons = document.getElementsByClassName('copy-deed-button');
+    var removeDeedButtons = document.getElementsByClassName('remove-deed-button');
+    var navHome = document.querySelector('nav .home-button');
+    var navFeed = document.querySelector('nav .feed-button');
+    var navProfile = document.querySelector('nav .profile-button');
 
-  var pathName = window.location.pathname;
+    var pathName = window.location.pathname;
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var signedIn = BlockstackManager.signedIn();
-    if (signedIn) {
-      hideByClass(signInButtons);
-    } else {
-      hideByClass(signOutButtons);
-      hideByClass(profileButtons);
-      hideByClass(smileButtons);
-      hideByClass(donateButtons);
-      hideByClass(copyDeedButtons);
-      hideByClass(removeDeedButtons);
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+      var signedIn = BlockstackManager.signedIn();
+      if (signedIn) {
+        hideByClass(signInButtons);
+      } else {
+        hideByClass(signOutButtons);
+        hideByClass(profileButtons);
+        hideByClass(donateButtons);
+        hideByClass(copyDeedButtons);
+        hideByClass(removeDeedButtons);
+      }
 
-    if (pathName === '/') {
-      navHome.classList.add('is-active');
-    } else if (pathName === '/profile') {
-      navProfile.classList.add('is-active');
-    } else if (pathName === '/deeds') {
-      navFeed.classList.add('is-active');
-    }
-  });
+      if (pathName === '/') {
+        navHome.classList.add('is-active');
+      } else if (pathName === '/profile') {
+        navProfile.classList.add('is-active');
+      } else if (pathName === '/deeds') {
+        navFeed.classList.add('is-active');
+      }
+    });
+  }
 
+  handleSignInStatus();
 </script>

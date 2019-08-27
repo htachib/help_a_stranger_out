@@ -4,26 +4,51 @@
 <script type="text/javascript">
   var profileDeedsInProgressDiv = document.getElementById('profile-deeds-in-progress');
   var profileDeedsCompletedDiv = document.getElementById('profile-deeds-completed');
+  var profileStatsDiv = document.getElementById('profile-stats');
 
   document.addEventListener('DOMContentLoaded', function() {
     TemplateManager.loadUserDeeds(setupCards);
   });
 
   function setupCards(inProgress, completed) {
-    renderDeed(inProgress, completed);
+    render(inProgress, completed);
     addCardListeners();
     addSmileListeners();
   }
 
-  function renderDeed(inProgress, completed) {
-    createTemplate(inProgress, profileDeedsInProgressDiv);
-    createTemplate(completed, profileDeedsCompletedDiv);
+  function render(inProgress, completed) {
+    renderCards(inProgress, profileDeedsInProgressDiv);
+    renderCards(completed, profileDeedsCompletedDiv);
+    renderStats(inProgress, completed);
   }
 
-  function createTemplate(deedsList, el) {
-    if (!!deedsList && (deedsList.length > 0)) {
+  function renderStats(inProgress, completed) {
+    var obj = {
+      deeds_completed: completed.length,
+      deeds_in_progress: inProgress.length,
+      funds_needed: totalAmount(inProgress)
+    }
+    var stats = HandlebarsTemplates['user_stats'](obj);
+    profileStatsDiv.innerHTML = profileStatsDiv.innerHTML + stats;
+  }
+
+  function totalAmount(list) {
+    var sum = 0;
+    for (var i = 0; i < list.length; i++) {
+      sum += parseFloat(list[i].funding_amount);
+    }
+    num = Math.round(sum * 100) / 100
+    return String(sum);
+  }
+
+  function renderCards(deedsList, el) {
+    if (listExist(deedsList)) {
       var card = HandlebarsTemplates['deed_card']({deeds: deedsList});
       el.innerHTML = el.innerHTML + card;
     }
+  }
+
+  function listExist(list) {
+    return (!!list && (list.length > 0));
   }
 </script>

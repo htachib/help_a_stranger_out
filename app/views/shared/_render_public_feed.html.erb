@@ -1,5 +1,6 @@
 <%= render "shared/card_listeners" %>
 <%= render "shared/smile" %>
+<%= render "shared/signed_in" %>
 
 <script type="text/javascript">
   var allDeedsDiv = document.getElementById('all-deeds');
@@ -12,6 +13,7 @@
     renderDeed(deedsList);
     addCardListeners();
     addSmileListeners();
+    handleSignInStatus();
   }
 
   function renderDeed(deeds) {

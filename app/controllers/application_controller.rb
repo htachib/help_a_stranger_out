@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+	include StatCounter
 	protect_from_forgery with: :exception
 	before_action :set_user
 	before_action :set_public_deeds
@@ -32,7 +33,10 @@ class ApplicationController < ActionController::Base
 			title: deed.title,
 			thumbnail: deed.thumbnail,
 			description: deed.description,
-			funding_amount: deed.funding_amount
+			funding_amount: deed.funding_amount,
+			count_completed: deed.count_completed,
+			count_in_progress: deed.count_in_progress,
+			count_smiles_given: deed.count_smiles_given
 		}
 	end
 end

@@ -1,5 +1,7 @@
+<% name ||= id %>
+
 <div class="form__item">
-  <textarea name="<%= id %>" id="<%= id %>" class="form__textarea <%= input_class %>"></textarea>
+  <textarea name="<%= name %>" id="<%= id %>" class="form__textarea <%= input_class %>"></textarea>
   <label for="<%= id %>" class="form__label"><%= label %></label>
   <div class="form__description"><%= description %></div>
 </div>

@@ -5,19 +5,20 @@
   <div class="col-md-12 row">
     <div class="col-md-5">
       <div class="empty-state__image shadow-input">
-        <%= image_tag 'deeds/donate-time.png', class: 'empty-state__images' %>
+        <%= image_tag '/deeds/donate-time.png', class: 'empty-state__images' %>
       </div>
     </div>
     <div class="col-md-7 pl-48">
-      <form class="form form--large">
-        <%= render partial: 'shared/form/input_textarea', locals: {id: 'story_details', label: 'Tell your story', description: 'How did you make a stranger smile?', input_class: 'height-300' } %>
+      <%= form_for(@story, class: 'form form--large') do |f| %>
+        <%= render partial: 'shared/form/input_textarea', locals: {name: 'story[body]', id: 'story_body', label: 'Tell your story', description: 'How did you make a stranger smile?', input_class: 'height-300' } %>
         <div class="mt-48">
           <button type="button" class="button button--color-blue" disabled="disabled">Upload Media</button> <span class='italic color-gray-light'>(Coming Soon)</span>
         </div>
+        <input type="hidden" name="story[deed_id]" id="story_deed_id" value="<%= params[:deed_id] %>">
         <div class="mt-48">
-          <button type="button" class="button button--wide">Publish Story</button>
+          <button type="submit" class="button button--wide">Publish Story</button>
         </div>
-      </form>
+      <% end %>
     </div>
   </div>
 </div>

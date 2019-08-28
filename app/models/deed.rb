@@ -1,6 +1,7 @@
 class Deed < ActiveRecord::Base
   belongs_to :user
   has_many :smiles
+  has_many :stories
 
   validates :title, presence: true
   validates :description, presence: true

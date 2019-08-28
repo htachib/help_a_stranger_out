@@ -33,6 +33,15 @@
     hideByClass(cardFooter);
     var storiesButtons = document.getElementsByClassName('read-stories-button');
     hideByClass(storiesButtons);
+    hideMarkCompleted();
+  }
+
+  function hideMarkCompleted() {
+    var completedSection = document.getElementById('profile-deeds-completed');
+    var completedButtons = completedSection.getElementsByClassName('mark-complete-button');
+    var removeButtons = completedSection.getElementsByClassName('icon-remove');
+    hideByClass(completedButtons);
+    hideByClass(removeButtons);
   }
 
   function render(inProgress, completed) {

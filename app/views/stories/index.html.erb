@@ -1,4 +1,4 @@
-<h2>Stories for "<%= @deed.title %>"</h2>
+<h2><span class=''><%= @stories.count %></span> Stories for "<%= @deed.title %>"</h2>
 
 <% @stories.each do |story| %>
   <div class="card">
@@ -18,15 +18,15 @@
   <div class="mb-24"></div>
 <% end %>
 
-<div id="no-stories">
+<div id="no-stories hide">
   <%= render partial: "shared/empty_stories", locals: { title: "No stories yet for this deed!", description: 'Browse the feed to find more stories.'}  %>
 </div>
 
 <script type="text/javascript">
   var noStoriesDiv = document.getElementById('no-stories');
 
-  if ('<%= @stories.count == 0 %>') {
-    noStoriesDiv.firstElementChild.classList.remove('hide');
+  if ('<%= @stories.count%>' == 0) {
+    noStoriesDiv.classList.remove('hide');
   }
 
 </script>

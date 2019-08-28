@@ -1,5 +1,5 @@
 class StoriesController < ApplicationController
-  before_action :set_deed, only: [:index]
+  before_action :set_deed, only: [:index, :new]
 
   def index
     @stories = @deed.try(:stories).order('created_at DESC') || []

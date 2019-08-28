@@ -13,9 +13,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'handlebars_assets'
 
-# blockstack
-gem 'omniauth'
-gem 'omniauth-blockstack'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'execjs'
 
@@ -42,6 +39,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'httparty' # external HTTP requests
 gem 'stripe' # payments
 gem 'orange-rails'
+
 
 group :development do
   gem 'web-console', '~> 3.5.0'

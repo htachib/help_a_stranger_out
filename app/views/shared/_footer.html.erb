@@ -61,7 +61,9 @@
     loadUserDeeds: function(callback) {
       BlockstackManager.session.getFile(Constants.path, BlockstackManager.getOpts()).then((file) => {
         gottenDeeds = JSON.parse(file);
-        UserDeedList.all = gottenDeeds;
+        if (!!gottenDeeds) {
+          UserDeedList.all = gottenDeeds;
+        }
         inProgress = UserDeedList.sortInProgress();
         completed = UserDeedList.sortCompleted();
         callback(inProgress, completed);
@@ -100,7 +102,7 @@
 //Handles community list
   var PublicDeedList = {
     add: function(deed) {
-      this.all.push(deed);
+      PublicDeedList.all.push(deed);
       UserDeedList.add(deed);
     },
     getById: function(id) {
@@ -132,15 +134,19 @@
     init: function() {
       BlockstackManager.session.getFile(Constants.path, BlockstackManager.getOpts()).then((file) => {
         gottenDeeds = JSON.parse(file);
-        this.all = gottenDeeds;
+        if (!!gottenDeeds) {
+          this.all = gottenDeeds;
+        }
       });
     },
     all: [],
     sortInProgress: function() {
-      return this.all.filter(deed => !deed.completed_at);
+      var all = this.all || [];
+      return all.filter(deed => !deed.completed_at);
     },
     sortCompleted: function() {
-      return this.all.filter(deed => !!deed.completed_at);
+      var all = this.all || [];
+      return all.filter(deed => !!deed.completed_at);
     },
     prepareObj: function(deed) {
       deed['started_at'] = new Date();
@@ -208,4 +214,5 @@
 
   BlockstackManager.init(blockstackSession);
   DeedManager.init();
+  UserDeedList.init();
 </script>

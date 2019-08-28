@@ -11,7 +11,7 @@
   <%= render "shared/authenticate_user" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body data-turbolinks="false">
   <div class="container mt-24 mb-96 container_padding">
     <%= render "shared/header" %>
     <%= yield %>

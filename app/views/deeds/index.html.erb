@@ -12,7 +12,7 @@
 <div class="row">
   <div class="col-md-7"></div>
   <div class="col-md-5">
-    <%= render partial: 'shared/form/input_dropdown', locals: { label: 'Sort By...', placeholder: 'Most Smiles', items: ['Most Smiles', 'Needs Funding', 'Most Completed'] } %>
+    <%# <%= render partial: 'shared/form/input_dropdown', locals: { label: 'Sort By...', placeholder: 'Most Smiles', items: ['Most Smiles', 'Needs Funding', 'Most Completed'] } %> %>
   </div>
 </div> -->
 <div class="mt-24"></div>
@@ -20,6 +20,12 @@
 <div class="callout callout--color-green callout--action cursor-pointer sign-in-callout signin-button">
   <p class=''><%= link_to 'sign in to donate and create your own deed list!', '#', class: 'no-text-decoration color-white-override' %></p>
 </div>
+
+<div class="callout callout--color-orange callout--action cursor-pointer">
+  <p class=''><%= link_to 'Create a Custom Deed', new_deed_path, class: 'no-text-decoration color-white-override' %></p>
+</div>
+
+
 
 <div id="all-deeds"></div>
 

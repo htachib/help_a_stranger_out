@@ -10,6 +10,7 @@ class StoriesController < ApplicationController
   end
 
   def create
+    binding.pry
     @story = Story.new(story_params)
     @story.save
 

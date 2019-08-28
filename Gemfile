@@ -23,7 +23,6 @@ gem 'puma', '~> 3.11'
 gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'jquery-turbolinks'
-gem 'devise'
 gem 'gravatarify', '~> 3.0.0'
 gem 'metamagic' # easily insert metatags for SEO / opengraph
 gem 'rails_12factor'

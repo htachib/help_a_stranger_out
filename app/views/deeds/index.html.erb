@@ -1,10 +1,14 @@
+<div class="callout callout--color-green callout--action cursor-pointer sign-in-callout signin-button shadow-secondary">
+  <p class=''><%= link_to 'sign in to create your deed list (and sponsor a deed - coming soon)!', '#', class: 'no-text-decoration color-white-override font-weight-500', data: { turbolinks: false } %></p>
+</div>
+
 <div class="col-md-12 row">
   <div class="col-md-9">
     <h1>Community Deed Feed</h1>
   </div>
   <div class="col-md-3 pr-0">
     <div class="pt-24">
-      <div class="button button--large shadow-secondary">
+      <div class="button button--large shadow-secondary no-hover-color-change">
         <%= link_to 'create a new deed', new_deed_path, class: 'color-white' %>
       </div>
     </div>
@@ -29,9 +33,6 @@
 </div> -->
 <div class="mt-24"></div>
 
-<div class="callout callout--color-green callout--action cursor-pointer sign-in-callout signin-button shadow-secondary">
-  <p class=''><%= link_to 'Sign in to create your deed list (and sponsor a deed - coming soon)!', '#', class: 'no-text-decoration color-white-override font-weight-500' %></p>
-</div>
 
 <div id="all-deeds"></div>
 
@@ -40,7 +41,6 @@
 <div class="callout callout--color-orange callout--action cursor-pointer create-custom-deed-button shadow-secondary">
   <p class=''><%= link_to 'create a new deed', new_deed_path, class: 'no-text-decoration color-white-override font-weight-500' %></p>
 </div>
-
 
 <script type="text/javascript">
 

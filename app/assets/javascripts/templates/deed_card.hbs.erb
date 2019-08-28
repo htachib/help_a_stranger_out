@@ -5,7 +5,7 @@
         <h3 data-title="{{id}}">{{title}}</h3>
         <div class="position-top-right row">
           <a href="/deeds/{{id}}/stories" class="button button--primary button--color-secondary read-stories-button" >read stories (<span data-count-stories="{{id}}"> {{count_stories}} </span>) </a>
-          <a href="/stories/new?deed_id={{id}}" class="button button--primary button--color-green mark-complete-button">mark complete</a>
+          <a href="/stories/new?deed_id={{id}}" class="button button--primary button--color-green mark-complete-button" onclick="markComplete({{id}})">mark complete</a>
         </div>
       </div>
       <div class="row">

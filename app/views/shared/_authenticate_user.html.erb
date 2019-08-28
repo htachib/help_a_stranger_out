@@ -3,10 +3,12 @@ var blockstackSession = new blockstack.UserSession;
 
 if (!blockstackSession.isUserSignedIn()) {
   var allowedPage = false;
-  var allowedPages = ['/', '/deeds'];
+  var allowedPages = ['/', '/deeds', '/why', '/inspire-me'];
 
   allowedPages.forEach(function(page) {
     if (window.location.pathname === page) {
+      allowedPage = true;
+    } else if (/\/deeds\/\d+\/stories/.test(window.location.href)) {
       allowedPage = true;
     }
   });

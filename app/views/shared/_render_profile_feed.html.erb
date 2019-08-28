@@ -103,4 +103,17 @@
   function listExist(list) {
     return (!!list && (list.length > 0));
   }
+
+  function markComplete(id) {
+    $.ajax({
+      url: '/deeds/' + id,
+      type: 'patch',
+      dataType: 'json',
+      success: function(json) {
+        console.log('success');
+      }
+    });
+    Stats.tick('deeds-completed', true, id);
+    Stats.tick('deeds-in-progress', false, id);
+  }
 </script>

@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
   get '/funding', to: 'pages#deed_fund', as: 'deed_fund'
 
-  resources :deeds, only: [:index, :create, :show, :edit, :new] do
+  get '/inspire-me', to: 'pages#inspire_me', as: 'inspire_me'
+
+  get '/why', to: 'pages#why', as: 'why'
+
+  resources :deeds, only: [:index, :create, :show, :edit, :new, :update] do
     resources :stories, only: [:index] # => /deeds/:deed_id/stories
   end
 

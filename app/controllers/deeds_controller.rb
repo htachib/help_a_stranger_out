@@ -20,6 +20,13 @@ class DeedsController < ApplicationController
     @stat_4 = total_deeds_for_funding
   end
 
+  def update
+    @deed = Deed.find_by(id: params[:id])
+    @deed.complete! if @deed
+
+    render json: { status: 200 }
+  end
+
   private
 
   def deed_params

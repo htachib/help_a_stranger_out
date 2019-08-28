@@ -6,6 +6,11 @@ class PagesController < ApplicationController
   end
 
   def deed_fund
-    
+  end
+
+  def inspire_me
+  end
+
+  def why
   end
 end

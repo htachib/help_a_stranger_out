@@ -30,4 +30,8 @@ class Deed < ActiveRecord::Base
   def all_stat_count(stat_type, direction, deed_id)
     Stat.where(stat_type: stat_type, direction: direction, deed_id: deed_id).count
   end
+
+  def complete!
+    update(completed_at: Time.now)
+  end
 end

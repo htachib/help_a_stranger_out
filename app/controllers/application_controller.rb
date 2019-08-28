@@ -27,7 +27,8 @@ class ApplicationController < ActionController::Base
 			funding_amount: deed.funding_amount,
 			count_completed: deed.count_completed,
 			count_in_progress: deed.count_in_progress,
-			count_smiles_given: deed.count_smiles_given
+			count_smiles_given: deed.count_smiles_given,
+			count_stories: deed.count_stories
 		}
 	end
 end

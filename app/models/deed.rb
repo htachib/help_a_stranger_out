@@ -11,6 +11,10 @@ class Deed < ActiveRecord::Base
     Smile.where(deed_id: self.id).count
   end
 
+  def count_stories
+    Story.where(deed_id: self.id).count
+  end
+
   def count_completed
     net_stat_count('deeds-completed', self.id)
   end

@@ -24,8 +24,14 @@
     addSmileListeners();
     var donateButtons = document.getElementsByClassName('donate-button');
     var copyDeedButtons = document.getElementsByClassName('copy-deed-button');
+    var smileButtons = document.getElementsByClassName('smile-button');
     hideByClass(donateButtons);
     hideByClass(copyDeedButtons);
+    hideByClass(smileButtons);
+    var cardFooter = document.getElementsByClassName('card__footer');
+    hideByClass(cardFooter);
+    var storiesButtons = document.getElementsByClassName('read-stories-button');
+    hideByClass(storiesButtons);
   }
 
   function render(inProgress, completed) {

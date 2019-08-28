@@ -1,18 +1,11 @@
 {{#deeds}}
   <div class="card" data-deed="{{id}}">
     <div class="card__body">
-      <div class="row pb-12">
-        <div class="col-md-8">
-          <h3 data-title="{{id}}">{{title}}</h3>
-        </div>
-        <div class="col-md-4">
-          <div class="row mt-12 pl-12">
-            <a href="/deeds/{{id}}/stories" class="button button--primary button--color-secondary">Read Stories</a>
-            <a href="/stories/new?deed_id={{id}}" class="button button--primary button--color-green">Mark Complete</a>
-          </div>
-          <!-- <div class="row mt-12 pl-12">
-
-          </div> -->
+      <div class="row pb-12 position-relative">
+        <h3 data-title="{{id}}">{{title}}</h3>
+        <div class="position-top-right row">
+          <a href="/deeds/{{id}}/stories" class="button button--primary button--color-secondary read-stories-button" >Read Stories (<span data-count-stories="{{id}}"> {{count_stories}} </span>) </a>
+          <a href="/stories/new?deed_id={{id}}" class="button button--primary button--color-green mark-complete-button">Mark Complete</a>
         </div>
       </div>
       <div class="row">

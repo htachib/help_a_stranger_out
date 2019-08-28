@@ -7,17 +7,24 @@ Deed.create([
   {
     title: 'Give coffee $',
     description: 'Buy a coffee for someone behind you in line at the coffee shop.',
-    thumbnail: 'donate-money'
+    thumbnail: 'donate-money',
+    funding_amount: 3,
   },
   {
-    title: 'Thank veterans',
+    title: 'Thank a veteran',
     description: 'Write a letter to a deployed or wounded member of the military through <a href="https://www.operationgratitude.com/express-your-thanks/write-letters/">Operation Gratitude</a>',
     thumbnail: 'recognize'
   },
   {
     title: 'Give toll $',
-    description: "Pay for someone's groceries behind you in line.",
-    thumbnail: 'donate-money'
+    description: "Pay for someone's toll behind you in line.",
+    thumbnail: 'donate-money',
+    funding_amount: 1,
+  },
+  {
+    title: 'Give hope to a sick child',
+    description: 'Write a card to a sick child at a hospital via <a href="http://www.cardsforhospitalizedkids.com/make-cards.html">Cards for Hospitalized Kids</a>.',
+    thumbnail: 'lift-a-burden'
   },
   {
     title: 'Friendly greeting',
@@ -35,8 +42,8 @@ Deed.create([
     thumbnail: 'donate-time'
   },
   {
-    title: 'Spread compliments',
-    description: 'Give a compliment to a stranger.',
+    title: 'Give a compliment',
+    description: 'Give a meaningful compliment to a stranger.',
     thumbnail: 'spread-positivity'
   },
   {

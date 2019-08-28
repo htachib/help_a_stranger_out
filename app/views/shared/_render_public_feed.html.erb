@@ -62,7 +62,10 @@
 
   function renderDeed(deeds) {
     var formatted = formatAmount(deeds, freeText);
-    var card = HandlebarsTemplates['deed_card']({deeds: formatted});
+    var sort = formatted.sort(function(a, b) {
+      return b.count_stories - a.count_stories;
+    })
+    var card = HandlebarsTemplates['deed_card']({deeds: sort});
     allDeedsDiv.innerHTML = allDeedsDiv.innerHTML + card;
   }
 </script>

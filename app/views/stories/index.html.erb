@@ -22,6 +22,10 @@
   <%= render partial: "shared/empty_stories", locals: { title: "No stories yet for this deed!", description: 'Browse the feed to find more stories.'}  %>
 </div>
 
+<div class="text-center">
+  <%= link_to 'browse more deeds', deeds_path, class: 'button button--large button--color-blue feed-button', data: { turbolinks: false} %>
+</div>
+
 <script type="text/javascript">
   document.addEventListener('DOMContentLoaded', function() {
     var noStoriesDiv = document.getElementById('no-stories');

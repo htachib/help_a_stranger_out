@@ -1,5 +1,4 @@
 class Deed < ActiveRecord::Base
-  belongs_to :user
   has_many :smiles
   has_many :stories
 

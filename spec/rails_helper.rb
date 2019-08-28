@@ -30,8 +30,6 @@ require 'rspec/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  # allow devise in controller tests
-  config.include Devise::Test::ControllerHelpers, type: :controller
 
   # wipes db between tests, reduces validation error false negatives
   config.before(:suite) do

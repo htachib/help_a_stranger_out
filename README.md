@@ -1,4 +1,4 @@
-# StrangersInKind
+# HelpAStrangerOut
 
 Libraries included in this rails app (from speedrail boilerplate):
 * User authentication via [Devise](https://github.com/plataformatec/devise)

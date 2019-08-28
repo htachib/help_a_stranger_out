@@ -21,6 +21,16 @@
     hideFundingButtons(deedsList);
     var markAsCompleteButtons = document.getElementsByClassName('mark-complete-button');
     hideByClass(markAsCompleteButtons);
+    statTileFunding();
+  }
+
+  function statTileFunding() {
+    var tiles = document.querySelectorAll(".stat-tiles");
+    var fundingTile = tiles[tiles.length - 1]
+    fundingTile.classList.remove('no-pointer');
+    fundingTile.addEventListener('click', function() {
+      window.location.href = '<%= deed_fund_path %>';
+    })
   }
 
   function hideFundingButtons(deeds) {

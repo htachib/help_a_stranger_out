@@ -3,7 +3,7 @@ var blockstackSession = new blockstack.UserSession;
 
 if (!blockstackSession.isUserSignedIn()) {
   var allowedPage = false;
-  var allowedPages = ['/', '/deeds', '/why', '/inspire-me'];
+  var allowedPages = ['/', '/deeds', '/why', '/inspire-me', '/funding'];
 
   allowedPages.forEach(function(page) {
     if (window.location.pathname === page) {

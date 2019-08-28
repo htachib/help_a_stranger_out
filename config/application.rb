@@ -12,6 +12,8 @@ module StrangersInKind
     config.autoload_paths << Rails.root.join('lib') # adds Lib folder to autoloaded files
     config.autoload_paths += %W(#{config.root}/app/services)
 
+    config.enable_dependency_loading = true
+
     # allow cross origin requests
     config.middleware.insert_before 0, Rack::Cors do
       allow do

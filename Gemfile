@@ -12,9 +12,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'handlebars_assets'
-
 gem 'rack-cors', :require => 'rack/cors'
-gem 'execjs'
 
 # rails 5.2 upgrades
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -33,13 +31,8 @@ gem 'pg'
 gem 'paperclip', '~> 5.2.0' # incomplete setup - must add resource to existing model
 gem 'aws-sdk-s3' # configure in config/application.rb
 gem 'seed_dump' # import / export seed data from existing db (https://github.com/rroblak/seed_dump)
-gem 'figaro' # private ENV vars for safe deployment
-gem 'rename' # rails g rename:into new_app_name
 gem 'rack-cors', :require => 'rack/cors'
-gem 'httparty' # external HTTP requests
-gem 'stripe' # payments
 gem 'orange-rails'
-
 
 group :development do
   gem 'web-console', '~> 3.5.0'

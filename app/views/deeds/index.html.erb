@@ -1,10 +1,22 @@
-<h1>Community Deed Feed</h1>
+<div class="col-md-12 row">
+  <div class="col-md-9">
+    <h1>Community Deed Feed</h1>
+  </div>
+  <div class="col-md-3 pr-0">
+    <div class="pt-24">
+      <div class="button button--large shadow-secondary">
+        <%= link_to 'create a new deed', new_deed_path, class: 'color-white' %>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="">
   <div class="row feed_stats">
-    <%= render partial: 'stat', locals: { value: @stat_1, id: 'deeds-completed', title: 'Deeds Completed', color: 'orange' } %>
-    <%= render partial: 'stat', locals: { value: @stat_2, id: 'deeds-in-progress', title: 'Deeds in Progress', color: 'blue' } %>
-    <%= render partial: 'stat', locals: { value: @stat_3, id: 'smiles-given', title: 'Smiles Given', color: 'gray' } %>
-    <%= render partial: 'stat', locals: { value: @stat_4, id: 'deeds-for-funding', title: 'Deeds for Funding', color: 'green' } %>
+    <%= render partial: 'stat', locals: { value: @stat_1, id: 'deeds-completed', title: 'deeds completed', color: 'orange' } %>
+    <%= render partial: 'stat', locals: { value: @stat_2, id: 'deeds-in-progress', title: 'deeds in progress', color: 'blue' } %>
+    <%= render partial: 'stat', locals: { value: @stat_3, id: 'smiles-given', title: 'smiles given', color: 'gray' } %>
+    <%= render partial: 'stat', locals: { value: @stat_4, id: 'deeds-for-funding', title: 'deeds for funding', color: 'green' } %>
   </div>
 </div>
 
@@ -21,16 +33,12 @@
   <p class=''><%= link_to 'Sign in to create your deed list (and sponsor a deed - coming soon)!', '#', class: 'no-text-decoration color-white-override font-weight-500' %></p>
 </div>
 
-<div class="callout callout--color-orange callout--action cursor-pointer create-custom-deed-button shadow-secondary">
-  <p class=''><%= link_to 'Create a custom deed', new_deed_path, class: 'no-text-decoration color-white-override font-weight-500' %></p>
-</div>
-
 <div id="all-deeds"></div>
 
 <%= render "shared/render_public_feed" %>
 
 <div class="callout callout--color-orange callout--action cursor-pointer create-custom-deed-button shadow-secondary">
-  <p class=''><%= link_to 'Create a custom deed', new_deed_path, class: 'no-text-decoration color-white-override font-weight-500' %></p>
+  <p class=''><%= link_to 'create a new deed', new_deed_path, class: 'no-text-decoration color-white-override font-weight-500' %></p>
 </div>
 
 

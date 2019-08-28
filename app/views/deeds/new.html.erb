@@ -1,4 +1,4 @@
-<h2>Create a Custom Deed</h2>
+<h2>Create a New Deed</h2>
 
 <%= render 'shared/errors', item: @deed %>
 
@@ -12,7 +12,7 @@
   <%= render partial: 'shared/form/toggle', locals: {id: 'funding', label: 'Needs Funding?'} %>
   <%= render partial: 'shared/form/input_short_toggled', locals: {id: 'funding_amount', label: 'Funding Amount in USD', toggle_id: 'funding' } %>
   <div class="mt-48"></div>
-  <button type="button" class="button" id='publish'>Publish Deed</button>
+  <button type="button" class="button" id='publish'>publish deed</button>
 </form>
 
 <script type="text/javascript">

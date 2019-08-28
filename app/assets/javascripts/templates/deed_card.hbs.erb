@@ -4,8 +4,8 @@
       <div class="row pl-12 position-relative">
         <h3 data-title="{{id}}">{{title}}</h3>
         <div class="position-top-right row">
-          <a href="/deeds/{{id}}/stories" class="button button--primary button--color-secondary read-stories-button" >Read Stories (<span data-count-stories="{{id}}"> {{count_stories}} </span>) </a>
-          <a href="/stories/new?deed_id={{id}}" class="button button--primary button--color-green mark-complete-button">Mark Complete</a>
+          <a href="/deeds/{{id}}/stories" class="button button--primary button--color-secondary read-stories-button" >read stories (<span data-count-stories="{{id}}"> {{count_stories}} </span>) </a>
+          <a href="/stories/new?deed_id={{id}}" class="button button--primary button--color-green mark-complete-button">mark complete</a>
         </div>
       </div>
       <div class="row">
@@ -14,7 +14,7 @@
             <img src="/deeds/{{thumbnail}}.png" alt="{{thumbnail}}" class="empty-state__image" data-thumbnail="{{thumbnail}}">
           </div>
           <div class="row pt-12 pl-12" class="funding-info">
-            <p class="mb-0 font-medium color-green">Estimated Cost: <span data-funding-amount="{{id}}">{{funding_amount}}</span></p>
+            <p class="mb-0 font-medium color-green">estimated cost: <span data-funding-amount="{{id}}">{{funding_amount}}</span></p>
           </div>
         </div>
         <div class="col-md-8 pl-24 position-relative">
@@ -23,9 +23,9 @@
           </div>
           <div class="card__footer pl-0 mt-12 italic">
             <p>
-              <span class='color-blue'><span data-count-completed="{{id}}">{{count_completed}}</span> Completed</span>
+              <span class='color-blue'><span data-count-completed="{{id}}">{{count_completed}}</span> completed</span>
               <span class="color-gray-light">|</span>
-              <span class='color-gray'><span data-count-in-progress="{{id}}">{{count_in_progress}}</span> In Progress</span>
+              <span class='color-gray'><span data-count-in-progress="{{id}}">{{count_in_progress}}</span> in progress</span>
             </p>
           </div>
           <div class="position-bottom-left">

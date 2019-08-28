@@ -7,6 +7,7 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     TemplateManager.loadPublicDeeds(populateCards);
+    TemplateManager.loadUserDeeds(hideCopy);
   });
 
   function populateCards(deedsList) {
@@ -14,6 +15,19 @@
     addCardListeners();
     addSmileListeners();
     handleSignInStatus();
+    var removeDeedButtons = document.getElementsByClassName('remove-deed-button');
+    hideByClass(removeDeedButtons);
+    var donateButtons = document.getElementsByClassName('donate-button');
+    hideByClass(donateButtons);
+  }
+
+  function hideCopy(deedsList) {
+    var copyDeedButtons = document.getElementsByClassName('copy-deed-button');
+    deedsList.forEach(function(deed) {
+      var id = deed.id;
+      var button = document.querySelector("div[data-deed='"+ id + "'").querySelector('.copy-deed-button');
+      button.classList.add('hide');
+    });
   }
 
   function renderDeed(deeds) {

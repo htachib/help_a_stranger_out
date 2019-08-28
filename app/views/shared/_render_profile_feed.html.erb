@@ -1,10 +1,14 @@
 <%= render "shared/card_listeners" %>
 <%= render "shared/smile" %>
+<%= render "shared/signed_in" %>
 
 <script type="text/javascript">
   var profileDeedsInProgressDiv = document.getElementById('profile-deeds-in-progress');
   var profileDeedsCompletedDiv = document.getElementById('profile-deeds-completed');
   var profileStatsDiv = document.getElementById('profile-stats');
+  var noDeedsInProgressDiv = document.getElementById('no-deeds-in-progress');
+  var noDeedsCompletedDiv = document.getElementById('no-completed-deeds');
+  var feedOrCreateButtons = document.getElementById('feedOrCreateButtons');
 
   document.addEventListener('DOMContentLoaded', function() {
     TemplateManager.loadUserDeeds(setupCards);
@@ -12,8 +16,16 @@
 
   function setupCards(inProgress, completed) {
     render(inProgress, completed);
+    setupPage();
+  }
+
+  function setupPage() {
     addCardListeners();
     addSmileListeners();
+    var donateButtons = document.getElementsByClassName('donate-button');
+    var copyDeedButtons = document.getElementsByClassName('copy-deed-button');
+    hideByClass(donateButtons);
+    hideByClass(copyDeedButtons);
   }
 
   function render(inProgress, completed) {
@@ -30,6 +42,17 @@
     }
     var stats = HandlebarsTemplates['user_stats'](obj);
     profileStatsDiv.innerHTML = profileStatsDiv.innerHTML + stats;
+    showEmptyStates(inProgress.length, completed.length);
+  }
+
+  function showEmptyStates(inProgress, completed) {
+    if (inProgress == 0) {
+      noDeedsInProgressDiv.firstElementChild.classList.remove('hide');
+    }
+    if (completed == 0) {
+      noDeedsCompletedDiv.firstElementChild.classList.remove('hide');
+      feedOrCreateButtons.classList.add('hide');
+    }
   }
 
   function totalAmount(list) {

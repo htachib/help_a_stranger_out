@@ -183,13 +183,10 @@
       return this;
     },
     signedIn: function() {
-      return this.userDataExists() && !this.userDataEmpty();
+      return this.userDataExists();
     },
     userDataExists: function() {
-      return (this.userData !== null)
-    },
-    userDataEmpty: function() {
-      return (Object.keys(this.userData).length === 0)
+      return (this.userData !== undefined)
     },
     getOpts: function() {
       return {decrypt: this.userData.appPrivateKey, verify: true}
@@ -210,6 +207,5 @@
   }
 
   BlockstackManager.init(blockstackSession);
-  UserDeedList.init();
   DeedManager.init();
 </script>

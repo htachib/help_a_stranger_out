@@ -34,6 +34,15 @@
       } else if (pathName === '/deeds') {
         navFeed.classList.add('is-active');
       }
+
+      if (pathName === '/profile') {
+        hideByClass(donateButtons);
+        hideByClass(copyDeedButtons);
+      }
+
+      if (pathName === '/') {
+        hideByClass(removeDeedButtons);
+      }
     });
   }
 

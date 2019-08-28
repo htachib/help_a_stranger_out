@@ -4,11 +4,22 @@
 <div class="mt-48"></div>
 <h2>My Deeds In Progress</h2>
 <div id="profile-deeds-in-progress"></div>
+<div id="no-deeds-in-progress">
+  <%= render partial: "shared/empty_user_deeds", locals: { title: "No deeds in progress!", description: 'Browse more deeds or create your own.'}  %>
+</div>
+
 
 <h2>Completed Deeds</h2>
-<div class="profile-deeds-completed"></div>
-<%= link_to 'See More', deeds_path, class: 'button button--large button--color-blue', data: { turbolinks: false } %>
-<%= link_to 'Create a Custom Deed', new_deed_path, class: 'button button--large' %>
+<div id="profile-deeds-completed"></div>
+
+<div id="feedOrCreateButtons">
+  <%= link_to 'See More', deeds_path, class: 'button button--large button--color-blue', data: { turbolinks: false } %>
+  <%= link_to 'Create a Custom Deed', new_deed_path, class: 'button button--large' %>
+</div>
+
+<div id="no-completed-deeds">
+  <%= render partial: "shared/empty_user_deeds", locals: { title: "No completed deeds yet!", description: 'Browse more deeds or create your own.'}  %>
+</div>
 
 <%= render "shared/render_profile_feed" %>
 

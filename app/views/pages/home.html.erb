@@ -74,7 +74,6 @@
       <%= image_tag 'deeds/lift-a-burden.png', alt: 'Restore faith in humanity', class: 'empty-state__image' %>
     </div>
 
-
   </div>
 </div>
 
@@ -106,22 +105,21 @@
 </div>
 
 <script type="text/javascript">
+if (window.location.search.indexOf('authResponse') > -1) {
+  if (blockstackSession.isSignInPending()) {
+    blockstackSession.handlePendingSignIn().then(userData => {
+      window.location.href = '<%= deeds_path %>';
+    })
+  }
+}
 
-// if (window.location.search.indexOf('authResponse') > -1) {
-//   if (blockstackSession.isSignInPending()) {
-//     blockstackSession.handlePendingSignIn().then(userData => {
-//       window.location.href = '<%= deeds_path %>';
-//     })
-//   }
-// }
-//
-// function hideLogin() {
-//   Array.from(signinButtons).forEach(function(el) {
-//     el.classList.add('hide');
-//   })
-// }
-//
-// if (blockstackSession.isUserSignedIn()) {
-//   hideLogin();
-// }
+function hideLogin() {
+  Array.from(signinButtons).forEach(function(el) {
+    el.classList.add('hide');
+  })
+}
+
+if (blockstackSession.isUserSignedIn()) {
+  hideLogin();
+}
 </script>

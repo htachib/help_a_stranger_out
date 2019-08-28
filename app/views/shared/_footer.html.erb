@@ -140,6 +140,15 @@
         }
       });
     },
+    markComplete: function(id) {
+      var deeds = UserDeedList.all;
+      deeds.forEach(function(deed) {
+        if (deed.id === id) {
+          deed.completed_at = new Date();
+        }
+      });
+      this.pushDeedList(); 
+    },
     all: [],
     sortInProgress: function() {
       var all = this.all || [];

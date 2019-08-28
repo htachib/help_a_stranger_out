@@ -4,6 +4,7 @@
 
 <script type="text/javascript">
   var allDeedsDiv = document.getElementById('all-deeds');
+  var freeText = 'free!';
 
   document.addEventListener('DOMContentLoaded', function() {
     TemplateManager.loadPublicDeeds(populateCards);
@@ -17,23 +18,41 @@
     handleSignInStatus();
     var removeDeedButtons = document.getElementsByClassName('remove-deed-button');
     hideByClass(removeDeedButtons);
-    var donateButtons = document.getElementsByClassName('donate-button');
-    hideByClass(donateButtons);
+    hideFundingButtons(deedsList);
     var markAsCompleteButtons = document.getElementsByClassName('mark-complete-button');
     hideByClass(markAsCompleteButtons);
+  }
+
+  function hideFundingButtons(deeds) {
+    deeds.forEach(function(deed) {
+      if (deed.funding_amount == freeText) {
+        var button = document.querySelector("div[data-deed='"+ deed.id + "'").querySelector('.donate-button');
+        button.classList.add('hide');
+      } else {
+        addFundLink(deed);
+      }
+    });
+  }
+
+  function addFundLink(deed) {
+    var button = document.querySelector("div[data-deed='"+ deed.id + "']").querySelector('.donate-button');
+    button.addEventListener('click', function() {
+      window.location.href = '<%= deed_fund_path %>';
+    })
   }
 
   function hideCopy(deedsList) {
     var copyDeedButtons = document.getElementsByClassName('copy-deed-button');
     deedsList.forEach(function(deed) {
       var id = deed.id;
-      var button = document.querySelector("div[data-deed='"+ id + "'").querySelector('.copy-deed-button');
+      var button = document.querySelector("div[data-deed='"+ id + "']").querySelector('.copy-deed-button');
       button.classList.add('hide');
     });
   }
 
   function renderDeed(deeds) {
-    var card = HandlebarsTemplates['deed_card']({deeds: deeds});
+    var formatted = formatAmount(deeds, freeText);
+    var card = HandlebarsTemplates['deed_card']({deeds: formatted});
     allDeedsDiv.innerHTML = allDeedsDiv.innerHTML + card;
   }
 </script>

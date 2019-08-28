@@ -9,6 +9,7 @@
   var noDeedsInProgressDiv = document.getElementById('no-deeds-in-progress');
   var noDeedsCompletedDiv = document.getElementById('no-completed-deeds');
   var feedOrCreateButtons = document.getElementById('feedOrCreateButtons');
+  var freeText = 'free!';
 
   document.addEventListener('DOMContentLoaded', function() {
     TemplateManager.loadUserDeeds(setupCards);
@@ -74,8 +75,9 @@
   function totalAmount(list) {
     var sum = 0;
     for (var i = 0; i < list.length; i++) {
-      var amount = list[i].funding_amount || 0;
-      sum += parseFloat(amount);
+      if (list[i].funding_amount !== freeText) {
+        sum += parseFloat(list[i].funding_amount.replace(/[^\d.]/g, ''));
+      }
     }
     num = Math.round(sum * 100) / 100
     return String(sum);
@@ -83,7 +85,8 @@
 
   function renderCards(deedsList, el) {
     if (listExist(deedsList)) {
-      var card = HandlebarsTemplates['deed_card']({deeds: deedsList});
+      var formatted = formatAmount(deedsList, freeText);
+      var card = HandlebarsTemplates['deed_card']({deeds: formatted});
       el.innerHTML = el.innerHTML + card;
     }
   }

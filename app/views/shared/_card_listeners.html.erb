@@ -3,6 +3,7 @@
     var copyDeedButtons = document.getElementsByClassName('icon-plus');
     var removeDeedButtons = document.getElementsByClassName('icon-remove');
     var budgetDeedButtons = document.getElementsByClassName('icon-budget');
+    var markCompleteButtons = document.getElementsByClassName('mark-complete-button');
 
   // copy deed to user list if click on + sign
     for (let el of copyDeedButtons) {
@@ -31,6 +32,14 @@
       });
     }
 
+    for (let el of markCompleteButtons) {
+      el.addEventListener('click', function(e) {
+        var card = findParentBySelector(this, '.card');
+        var id = card.getAttribute('data-deed');
+        UserDeedList.markComplete(id);
+      });
+    }
+
     $(".icons-item").hover(function() {
       $(this).siblings('.icons-text').css('display', 'block');
       $(this).addClass('color-black');
@@ -54,7 +63,8 @@
     obj['title'] = getSelector("[data-title='"+ id + "']");
     obj['description'] = getSelector("[data-description='"+ id + "']");
     obj['thumbnail'] = document.querySelector("[data-deed='"+ id + "'] img").getAttribute('data-thumbnail');
-    obj['funding_amount'] = 0; // update funding later
+    var dollar = getSelector("[data-funding-amount='"+ id + "']");
+    obj['funding_amount'] = parseFloat(dollar.replace(/[^\d.]/g, ''));
     obj['count_completed'] = getSelector("[data-count-completed='"+ id + "']");
     obj['count_in_progress'] = getSelector("[data-count-in-progress='"+ id + "']");
     obj['count_smiles_given'] = getSelector("[data-count-smiles-given='"+ id + "']");

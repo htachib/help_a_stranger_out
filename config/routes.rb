@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get '/feed', to: 'deeds#index', as: 'feed'
 
+  get '/funding', to: 'pages#deed_fund', as: 'deed_fund'
+
   resources :deeds, only: [:index, :create, :show, :edit, :new] do
     resources :stories, only: [:index] # => /deeds/:deed_id/stories
   end

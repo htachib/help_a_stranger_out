@@ -4,4 +4,8 @@ class PagesController < ApplicationController
 
   def profile
   end
+
+  def deed_fund
+    
+  end
 end

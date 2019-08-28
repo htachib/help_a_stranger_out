@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card__body">
+    <div class="empty-state">
+      <div class="empty-state__content">
+        <div class="empty-state__title">
+          <h2 class="mb-0">The Deed Fund</h2>
+          <h4 class="mb-24 italic color-gray">(Coming Soon)</h4>
+        </div>
+
+        <div class="empty-state__description">
+          <p>Sponsor a deed for a fellow dogooder.</p>
+          <p>Deposit bitcoin through the Lightning network.</p>
+        </div>
+
+        <div class="empty-state__buttons">
+          <%= link_to 'Go Back to Feed', deeds_path, class: 'button button--large button--color-blue', data: { turbolinks: false } %>
+        </div>
+
+      </div>
+
+
+
+      <div class="empty-state__image"><%= image_tag '/deeds/donate-money.png', alt: 'Donate Money' %></div>
+    </div>
+  </div>
+</div>

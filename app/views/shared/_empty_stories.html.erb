@@ -1,0 +1,21 @@
+<div class="card hide">
+  <div class="card__body">
+    <div class="empty-state">
+      <div class="empty-state__content">
+        <div class="empty-state__title">
+          <h2><%= title %></h2>
+        </div>
+
+        <div class="empty-state__description">
+          <p><%= description %></p>
+        </div>
+
+        <div class="empty-state__buttons">
+          <%= link_to 'Go Back to feed', deeds_path, class: 'button button--large button--color-blue', data: { turbolinks: false } %>
+        </div>
+      </div>
+
+      <div class="empty-state__image"><img src="/ginger-cat-typing.png"></div>
+    </div>
+  </div>
+</div>

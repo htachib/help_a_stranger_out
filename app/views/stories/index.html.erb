@@ -1,6 +1,32 @@
 <h2>Stories for "<%= @deed.title %>"</h2>
 
-
 <% @stories.each do |story| %>
-<%= story.body %>
+  <div class="card">
+    <div class="card__body">
+      <div class="empty-state">
+        <div class="empty-state__content">
+          <div class="empty-state__title">
+            <h4><%= story.created_at.in_time_zone("Eastern Time (US & Canada)").to_formatted_s(:long) %> ET</h4>
+          </div>
+          <div class="empty-state__description">
+            <p><%= story.body %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-24"></div>
 <% end %>
+
+<div id="no-stories">
+  <%= render partial: "shared/empty_stories", locals: { title: "No stories yet for this deed!", description: 'Browse the feed to find more stories.'}  %>
+</div>
+
+<script type="text/javascript">
+  var noStoriesDiv = document.getElementById('no-stories');
+
+  if ('<%= @stories.count == 0 %>') {
+    noStoriesDiv.firstElementChild.classList.remove('hide');
+  }
+
+</script>

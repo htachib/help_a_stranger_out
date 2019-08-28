@@ -12,6 +12,7 @@
     var navHome = document.querySelector('nav .home-button');
     var navFeed = document.querySelector('nav .feed-button');
     var navProfile = document.querySelector('nav .profile-button');
+    var createCustomDeedButtons = document.getElementsByClassName('create-custom-deed-button');
 
     var pathName = window.location.pathname;
 
@@ -25,6 +26,7 @@
         hideByClass(donateButtons);
         hideByClass(copyDeedButtons);
         hideByClass(removeDeedButtons);
+        hideByClass(createCustomDeedButtons);
       }
 
       if (pathName === '/') {
@@ -43,6 +45,7 @@
       if (pathName === '/') {
         hideByClass(removeDeedButtons);
       }
+
     });
   }
 

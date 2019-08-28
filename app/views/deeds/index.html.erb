@@ -17,19 +17,22 @@
 </div> -->
 <div class="mt-24"></div>
 
-<div class="callout callout--color-green callout--action cursor-pointer sign-in-callout signin-button">
-  <p class=''><%= link_to 'sign in to create your own deed list (and donate - coming soon)!', '#', class: 'no-text-decoration color-white-override font-weight-500' %></p>
+<div class="callout callout--color-green callout--action cursor-pointer sign-in-callout signin-button shadow-secondary">
+  <p class=''><%= link_to 'Sign in to create your deed list (and sponsor a deed - coming soon)!', '#', class: 'no-text-decoration color-white-override font-weight-500' %></p>
 </div>
 
-<div class="callout callout--color-orange callout--action cursor-pointer create-custom-deed-button">
-  <p class=''><%= link_to 'Create a Custom Deed', new_deed_path, class: 'no-text-decoration color-white-override font-weight-500' %></p>
+<div class="callout callout--color-orange callout--action cursor-pointer create-custom-deed-button shadow-secondary">
+  <p class=''><%= link_to 'Create a custom deed', new_deed_path, class: 'no-text-decoration color-white-override font-weight-500' %></p>
 </div>
-
-
 
 <div id="all-deeds"></div>
 
 <%= render "shared/render_public_feed" %>
+
+<div class="callout callout--color-orange callout--action cursor-pointer create-custom-deed-button shadow-secondary">
+  <p class=''><%= link_to 'Create a custom deed', new_deed_path, class: 'no-text-decoration color-white-override font-weight-500' %></p>
+</div>
+
 
 <script type="text/javascript">
 

@@ -7,7 +7,7 @@
       <%= image_tag 'help-a-stranger.png', alt: 'Help a stranger out' %>
     </div>
     <div class="mt-12">
-      <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
+      <%= link_to 'sign up', '#', class: 'button button--large signin-button', data: { turbolinks: false} %>
       <%= link_to 'deed feed', deeds_path, class: 'button button--large button--color-blue feed-button', data: { turbolinks: false} %>
     </div>
   </div>
@@ -29,7 +29,7 @@
     </div>
 
     <div class="empty-state__image">
-      <%= image_tag 'deeds/give-a-hand.png', alt: 'Kindness breeds kindness', class: 'empty-state__images' %>
+      <%= image_tag '/deeds/give-a-hand.png', alt: 'Kindness breeds kindness', class: 'empty-state__images' %>
     </div>
   </div>
 </div>
@@ -37,7 +37,7 @@
 <div class="mt-48">
   <div class="empty-state empty-state--no-gutter">
     <div class="empty-state__image">
-      <%= image_tag 'deeds/recognize.png', alt: 'Everything counts', class: 'empty-state__image' %>
+      <%= image_tag '/deeds/recognize.png', alt: 'Everything counts', class: 'empty-state__image' %>
     </div>
 
     <div class="empty-state__content">
@@ -71,7 +71,7 @@
     </div>
 
     <div class="empty-state__image">
-      <%= image_tag 'deeds/lift-a-burden.png', alt: 'Restore faith in humanity', class: 'empty-state__image' %>
+      <%= image_tag '/deeds/lift-a-burden.png', alt: 'Restore faith in humanity', class: 'empty-state__image' %>
     </div>
 
   </div>
@@ -100,7 +100,7 @@
 </div>
 
 <div class="mt-48 text-center">
-  <%= link_to 'sign up', '#', class: 'button button--large signin-button' %>
+  <%= link_to 'sign up', '#', class: 'button button--large signin-button', data: { turbolinks: false} %>
   <%= link_to 'deed feed', deeds_path, class: 'button button--large button--color-blue feed-button' %>
 </div>
 
@@ -111,15 +111,5 @@ if (window.location.search.indexOf('authResponse') > -1) {
       window.location.href = '<%= deeds_path %>';
     })
   }
-}
-
-function hideLogin() {
-  Array.from(signinButtons).forEach(function(el) {
-    el.classList.add('hide');
-  })
-}
-
-if (blockstackSession.isUserSignedIn()) {
-  hideLogin();
 }
 </script>

@@ -34,6 +34,22 @@
     var storiesButtons = document.getElementsByClassName('read-stories-button');
     hideByClass(storiesButtons);
     hideMarkCompleted();
+    highlightInProgress();
+    deHighlightCompleted();
+  }
+
+  function highlightInProgress() {
+    var cardsInProgress = document.getElementById('profile-deeds-in-progress').getElementsByClassName('card');
+    for (var i = 0; i < cardsInProgress.length; i++) {
+      cardsInProgress[i].classList.add('shadow-input');
+    }
+  }
+
+  function deHighlightCompleted() {
+    var cardsCompleted = document.getElementById('profile-deeds-completed').getElementsByClassName('card');
+    for (var i = 0; i < cardsCompleted.length; i++) {
+      cardsCompleted[i].classList.add('message--color-gray');
+    }
   }
 
   function hideMarkCompleted() {
